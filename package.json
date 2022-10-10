@@ -9,11 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
+    "@heroicons/react": "^2.0.12",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "i18next": "^21.10.0",
+    "i18next-browser-languagedetector": "^6.1.8",
+    "moment": "^2.29.4",
     "next": "12.3.1",
+    "next-i18next": "^12.1.0",
+    "photoswipe": "^5.3.2",
+    "qs": "^6.11.0",
     "react": "18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-markdown": "^8.0.3",
+    "react-moment": "^1.1.2",
+    "react-photoswipe-gallery": "^2.2.2",
     "tailwindcss-opentype": "^1.1.0"
   },
   "devDependencies": {

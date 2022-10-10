@@ -1,10 +1,12 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
-import Breadcrumbs from '../components/breadcrumbs'
-import Layout from '../components/layout'
-import PostCard from '../components/post_card'
+import { useRouter } from 'next/router'
+import React from 'react'
+import Breadcrumbs from '../../../components/breadcrumbs'
+import Layout from '../../../components/layout'
+import PostCard from '../../../components/post_card'
 
-type Mission = {
+type Event = {
   id: number
   imgUrl: string
   isVideo: boolean
@@ -12,7 +14,7 @@ type Mission = {
   createdAt: string
 }
 
-const Missions: Mission[] = [
+const Events: Event[] = [
   {
     id: 1,
     imgUrl: '/missions/mission-1.png',
@@ -87,8 +89,10 @@ const Missions: Mission[] = [
 ]
 
 const MissionsPage: NextPage = () => {
+  const router = useRouter()
+  const { mission } = router.query
   return (
-    <Layout title="Missions">
+    <Layout title={`${mission}`}>
       <section className="container mt-2 mb-6">
         <Breadcrumbs />
       </section>
@@ -143,13 +147,13 @@ const MissionsPage: NextPage = () => {
           </p>
         </div>
         <div className="grid grid-cols-3 gap-x-6 gap-y-8">
-          {Missions.map((m) => (
+          {Events.map((m) => (
             <div key={m.id} className="basis-1/3">
               <PostCard
                 imgUrl={m.imgUrl}
                 title={m.title}
                 createdAt={m.createdAt}
-                url={'/'}
+                url={`/missions/${mission}/${m.id}`}
               />
             </div>
           ))}

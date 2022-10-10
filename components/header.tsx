@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import LocaleDropdown from './localeDropdown'
+import { useTranslation } from 'next-i18next'
 
 const Header = () => {
+  const { t } = useTranslation()
   return (
     <header className="fixed z-10 w-full bg-white">
       <nav className="container h-[88px] flex items-center justify-between">
@@ -15,7 +18,7 @@ const Header = () => {
         <ul className="flex items-center gap-8">
           <li>
             <Link href="/">
-              <a>Про проєкт</a>
+              <a>{t('home')}</a>
             </Link>
           </li>
           <li>
@@ -24,12 +27,12 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/">
+            <Link href="/reports">
               <a>Звіти</a>
             </Link>
           </li>
           <li>
-            <Link href="/">
+            <Link href="/team">
               <a>Команда</a>
             </Link>
           </li>
@@ -45,7 +48,7 @@ const Header = () => {
           </li>
         </ul>
 
-        <span>UA</span>
+        <LocaleDropdown />
       </nav>
     </header>
   )

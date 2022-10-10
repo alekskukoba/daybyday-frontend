@@ -1,10 +1,14 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaChevronRight, FaArrowRight, FaPlay } from 'react-icons/fa'
+import { FaChevronRight, FaArrowRight } from 'react-icons/fa'
+import Img from '../components/image'
 
 import Layout from '../components/layout'
+import PostCard from '../components/post_card'
 import Tabs from '../components/tabs'
+import { fetchAPI } from './api'
+import { Partners } from './api/types'
 
 type Report = {
   id: number
@@ -91,7 +95,11 @@ const Partners: Partner[] = [
   { imgUrl: '/partners/fozzy.jpeg' },
 ]
 
-const Home: NextPage = () => {
+interface Props {
+  partners: Partners
+}
+
+const Home: NextPage<Props> = ({ partners }) => {
   return (
     <Layout title="DayByDay">
       <section className="container mb-20">
@@ -151,7 +159,7 @@ const Home: NextPage = () => {
           </div>
           <div className="relative basis-1/2 h-[360px]">
             <Image src="/military-aid.png" alt="" layout="fill" />
-            <Link href="/">
+            <Link href="/missions/military-aid">
               <a className="absolute top-0 left-0 flex items-end w-full h-full p-6 text-white">
                 <div className="flex items-center justify-between grow">
                   <span className="text-2xl font-bold ">Допомога армії</span>
@@ -193,21 +201,13 @@ const Home: NextPage = () => {
         <div className="flex gap-10">
           {Reports.map((r) => (
             <div key={r.id} className="basis-1/3">
-              <div className="relative mb-4">
-                <Image src={r.imgUrl} height={240} width={384} alt={r.title} />
-                {r.isVideo && (
-                  <div className="w-[88px] h-[88px] rounded-full flex items-center justify-center bg-black bg-opacity-50 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <FaPlay size={32} />
-                  </div>
-                )}
-              </div>
-              <p className="mb-2 text-ellipsis">{r.title}</p>
-              <div className="flex items-center justify-between">
-                <p className="text-[#929292]">{r.createdAt}</p>
-                <Link href="/">
-                  <a className="text-[#4289F4]">Переглянути</a>
-                </Link>
-              </div>
+              <PostCard
+                imgUrl={r.imgUrl}
+                title={r.title}
+                createdAt={r.createdAt}
+                url={'asd'}
+                isVideo={r.isVideo}
+              />
             </div>
           ))}
         </div>
@@ -273,15 +273,27 @@ const Home: NextPage = () => {
           </h2>
         </div>
         <div className="grid grid-cols-5">
-          {Partners.map((p, idx) => (
-            <div key={idx} className="relative h-14">
-              <Image src={p.imgUrl} layout="fill" alt={p.imgUrl} />
+          {partners.data.map((partner) => (
+            <div key={partner.id} className="relative h-14">
+              <Img image={partner.attributes.logo} />
             </div>
           ))}
         </div>
       </section>
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const [partnersRes] = await Promise.all([
+    fetchAPI('partners', { populate: ['logo'] }),
+  ])
+  return {
+    props: {
+      partners: partnersRes,
+    },
+    revalidate: 1,
+  }
 }
 
 export default Home
