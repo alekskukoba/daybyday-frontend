@@ -10,6 +10,8 @@ import Tabs from '../components/tabs'
 import { fetchAPI } from './api'
 import { Partners } from './api/types'
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 type Report = {
   id: number
   imgUrl: string
@@ -284,13 +286,14 @@ const Home: NextPage<Props> = ({ partners }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const [partnersRes] = await Promise.all([
     fetchAPI('partners', { populate: ['logo'] }),
   ])
   return {
     props: {
       partners: partnersRes,
+      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
     },
     revalidate: 1,
   }

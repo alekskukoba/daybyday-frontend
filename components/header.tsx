@@ -18,32 +18,32 @@ const Header = () => {
         <ul className="flex items-center gap-8">
           <li>
             <Link href="/">
-              <a>{t('home')}</a>
+              <a>{t('nav.about')}</a>
             </Link>
           </li>
           <li>
             <Link href="/missions">
-              <a>Місії</a>
+              <a>{t('nav.missions')}</a>
             </Link>
           </li>
           <li>
             <Link href="/reports">
-              <a>Звіти</a>
+              <a>{t('nav.reports')}</a>
             </Link>
           </li>
           <li>
             <Link href="/team">
-              <a>Команда</a>
+              <a>{t('nav.team')}</a>
             </Link>
           </li>
           <li>
             <Link href="/">
-              <a>Пожертвування</a>
+              <a>{t('nav.donations')}</a>
             </Link>
           </li>
           <li>
             <Link href="/">
-              <a>Партнери</a>
+              <a>{t('nav.partners')}</a>
             </Link>
           </li>
         </ul>

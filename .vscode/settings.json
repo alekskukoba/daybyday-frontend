@@ -8,5 +8,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "emmet.showSuggestionsAsSnippets": true,
-  "i18n-ally.localesPaths": ["public/locale", "public/locales"]
+  "i18n-ally.localesPaths": ["public/locales"],
+  "i18n-ally.dirStructure": "auto",
+  "i18n-ally.autoDetection": true,
+  "i18n-ally.keystyle": "nested"
 }
