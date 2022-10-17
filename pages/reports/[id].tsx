@@ -79,6 +79,13 @@ const ReportPage: React.FC = () => {
   )
 }
 
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
