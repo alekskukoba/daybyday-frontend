@@ -144,10 +144,13 @@ const Tabs: React.FC = () => {
     <>
       <div className="flex flex-wrap">
         <div className="w-full">
-          <ul className="flex items-center gap-20 border-b" role="tablist">
+          <ul
+            className="flex items-center gap-10 overflow-x-scroll border-b "
+            role="tablist"
+          >
             <li>
               <a
-                className="text-xl font-semibold text-[#222222] "
+                className="text-lg whitespace-nowrap font-semibold text-[#222222]"
                 onClick={(e) => {
                   e.preventDefault()
                   setOpenTab(1)
@@ -229,7 +232,7 @@ const Tabs: React.FC = () => {
           <div className="pt-6">
             <div className="tab-content tab-space">
               <div className={openTab === 1 ? 'block' : 'hidden'} id="link1">
-                <div className="grid grid-cols-2 gap-10">
+                <div className="grid gap-4 lg:grid-cols-2">
                   <div>
                     <PaymentCard
                       imgUrl={Card.imgUrl}
@@ -266,7 +269,7 @@ const Tabs: React.FC = () => {
                 <p className="text-lg text-[#6D6D6D]">
                   Send money by bank transfer from abroad
                 </p>
-                <div className="grid grid-cols-2 gap-10">
+                <div className="grid gap-4 lg:grid-cols-2">
                   {SwiftAccounts.map((s, idx) => (
                     <div key={idx}>
                       <PaymentCard
@@ -305,7 +308,7 @@ const Tabs: React.FC = () => {
                 </div>
               </div>
               <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
-                <div className="grid grid-cols-2 gap-10">
+                <div className="grid gap-4 lg:grid-cols-2">
                   <div>
                     <PaymentCard
                       imgUrl={PayPal.imgUrl}
@@ -316,7 +319,7 @@ const Tabs: React.FC = () => {
                 </div>
               </div>
               <div className={openTab === 4 ? 'block' : 'hidden'} id="link4">
-                <div className="grid grid-cols-2 gap-10">
+                <div className="grid gap-4 lg:grid-cols-2">
                   {Crypo.map((c, idx) => (
                     <div key={idx}>
                       <PaymentCard

@@ -7,5 +7,11 @@
     "partners": "Partners",
     "team": "Team"
   },
-  "home": "Home"
+  "locale": {
+    "uk": "Укр",
+    "en": "Eng"
+  },
+  "button": {
+    "donate": "Donate"
+  }
 }

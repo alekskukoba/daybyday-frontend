@@ -7,5 +7,11 @@
     "partners": "Партнери",
     "team": "Команда"
   },
-  "home": "Home"
+  "locale": {
+    "uk": "Укр",
+    "en": "Eng"
+  },
+  "button": {
+    "donate": "Задонатити"
+  }
 }

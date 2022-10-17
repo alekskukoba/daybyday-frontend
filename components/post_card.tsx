@@ -20,7 +20,7 @@ const PostCard: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="relative mb-4">
+      <div className="relative mb-4 text">
         <Image src={imgUrl} height={240} width={384} alt={title} />
         {isVideo && (
           <div className="w-[88px] h-[88px] rounded-full flex items-center justify-center bg-black bg-opacity-50 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
