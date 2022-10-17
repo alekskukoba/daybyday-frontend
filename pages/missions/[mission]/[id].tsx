@@ -1,12 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
 import Breadcrumbs from '../../../components/breadcrumbs'
-import Layout from '../../../components/layout'
 import PaymentCard from '../../../components/payment_card'
+import Head from 'next/head'
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const EventPage: React.FC = () => {
   return (
-    <Layout title="Mission">
+    <>
+      <Head>
+        <title>Mission</title>
+      </Head>
       <div className="container">
         <section className="mb-6">
           <Breadcrumbs />
@@ -69,8 +74,16 @@ const EventPage: React.FC = () => {
           </div>
         </section>
       </div>
-    </Layout>
+    </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+    },
+  }
 }
 
 export default EventPage

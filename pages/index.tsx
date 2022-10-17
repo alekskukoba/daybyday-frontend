@@ -2,15 +2,13 @@ import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaChevronRight, FaArrowRight } from 'react-icons/fa'
-import Img from '../components/image'
 
-import Layout from '../components/layout'
 import PostCard from '../components/post_card'
 import Tabs from '../components/tabs'
-import { fetchAPI } from './api'
-import { Partners } from './api/types'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import Head from 'next/head'
 
 type Report = {
   id: number
@@ -97,84 +95,110 @@ const Partners: Partner[] = [
   { imgUrl: '/partners/fozzy.jpeg' },
 ]
 
-interface Props {
-  partners: Partners
-}
-
-const Home: NextPage<Props> = ({ partners }) => {
+const Home: NextPage = () => {
   return (
-    <Layout title="DayByDay">
-      <section className="container mb-20">
-        <div className="relative h-[680px]">
-          <Image src="/hero.png" alt="" layout="fill" />
-          <div className="absolute flex flex-col items-center justify-center w-full h-full gap-20 p-24">
-            <h1 className="text-6xl font-bold text-center text-white">
-              Допомагати легко - просто зробіть крок на зустріч
-            </h1>
+    <>
+      <Head>
+        <title>Home</title>
+      </Head>
+      <section className="pb-20">
+        <div className="container">
+          <div className="relative h-[680px]">
+            <Image src="/hero.png" alt="" layout="fill" objectFit="cover" />
+            <div className="absolute w-full h-full">
+              <div className="flex flex-col items-center justify-end h-full gap-8 py-16 xl:justify-center xl:px-24">
+                <h1 className="text-3xl font-bold text-center text-white xl:text-6xl">
+                  Допомагати легко - просто зробіть крок на зустріч
+                </h1>
+                <Link href="/">
+                  <a className="flex items-center justify-center bg-[#FFD233] w-72 h-14 rounded text-[#222222] xl:hidden">
+                    Задонатити
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#EEF0F3] py-20">
+        <div className="container space-y-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+              Наші проєкти
+            </h2>
             <Link href="/">
-              <a className="flex items-center justify-center bg-[#FFD233] w-72 h-14 rounded text-[#222222]">
-                Задонатити
+              <a className="flex items-center gap-3 text-lg">
+                <span>Більше проєктів</span>
+                <ArrowRightIcon className="w-6 h-6 text-[#222222]" />
               </a>
             </Link>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="relative h-64 md:h-80 ">
+              <Image
+                src={'/project-1.png'}
+                alt="project"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="space-y-8">
+              <p className="text-2xl font-semibold">Виробництво буржуйок</p>
+              <div className="space-y-3">
+                <p>
+                  На багаточисельні запити від військових ми запустили
+                  виробництво буржуйок. Також будемо робити бойлери на дровах.
+                </p>
+                <p>
+                  На сьогоднішній день ми виробляємо 1 буржуйку в день. При
+                  стабільному фінансуванні можемо виробляти 100 шт.в місяць.
+                </p>
+              </div>
+              <button className="h-12 w-full bg-[#FFD233] rounded font-semibold">
+                Підтримати проєкт
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="container mb-20 space-y-8">
-        <h2 className="text-[40px] leading-[56px] font-semibold">Про проєкт</h2>
-        <div className="flex gap-10">
-          <Image src="/about.png" alt="" width={580} height={440} />
-
-          <div className="space-y-4">
-            <p>
-              Нас, а саме людей доброї волі, котрі називають себе волонтерами,
-              об’єднала ця жахлива війна. Ми вірішили день за днем робити добрі
-              та необхідні справи за для нашої перемоги. В усіх цих людей різні
-              історії, але у всіх них великеі мужнє серце. Для нас - Укарїна, це
-              живий організм і мия є його частиною.
-            </p>
-            <p>
-              Нашою метою є якнайшвидше дістатися з гуманітарною допомогою туди,
-              де ми найбільше потрібні українцям. Якщо у вас є бажання
-              приєднатись до нашої командиі зробити свій внесок у перемогу
-              України - пишіть нам: Help@daybyday.com.ua
-            </p>
+      <section className="py-20">
+        <div className="container space-y-8">
+          <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+            Місії
+          </h2>
+          <div className="gap-10 lg:flex">
+            <div className="relative basis-1/2 h-[360px]">
+              <Image src="/humanitarian-aid.png" alt="" layout="fill" />
+              <Link href="/">
+                <a className="absolute top-0 left-0 flex items-end w-full h-full p-6 text-white">
+                  <div className="flex items-center justify-between grow">
+                    <span className="text-2xl font-bold">
+                      Гуманітарна допомога
+                    </span>
+                    <FaChevronRight size={16} />
+                  </div>
+                </a>
+              </Link>
+            </div>
+            <div className="relative basis-1/2 h-[360px]">
+              <Image src="/military-aid.png" alt="" layout="fill" />
+              <Link href="/missions/military-aid">
+                <a className="absolute top-0 left-0 flex items-end w-full h-full p-6 text-white">
+                  <div className="flex items-center justify-between grow">
+                    <span className="text-2xl font-bold ">Допомога армії</span>
+                    <FaChevronRight size={16} />
+                  </div>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="container mb-20 space-y-8">
-        <h2 className="text-[40px] leading-[56px] font-semibold">Місії</h2>
-        <div className="flex gap-10">
-          <div className="relative basis-1/2 h-[360px]">
-            <Image src="/humanitarian-aid.png" alt="" layout="fill" />
-            <Link href="/">
-              <a className="absolute top-0 left-0 flex items-end w-full h-full p-6 text-white">
-                <div className="flex items-center justify-between grow">
-                  <span className="text-2xl font-bold">
-                    Гуманітарна допомога
-                  </span>
-                  <FaChevronRight size={16} />
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div className="relative basis-1/2 h-[360px]">
-            <Image src="/military-aid.png" alt="" layout="fill" />
-            <Link href="/missions/military-aid">
-              <a className="absolute top-0 left-0 flex items-end w-full h-full p-6 text-white">
-                <div className="flex items-center justify-between grow">
-                  <span className="text-2xl font-bold ">Допомога армії</span>
-                  <FaChevronRight size={16} />
-                </div>
-              </a>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#4289F4] mb-20">
-        <div className="container flex flex-col items-center px-32 py-20 gap-y-4">
+      <section className="bg-[#4289F4] py-20">
+        <div className="container flex flex-col items-center px-32 gap-y-4">
           <h3 className="text-white text-[40px] leading-[50px] font-bold">
             Від кожного з нас залежить доля України
           </h3>
@@ -191,58 +215,66 @@ const Home: NextPage<Props> = ({ partners }) => {
         </div>
       </section>
 
-      <section className="container mb-20 space-y-8">
-        <div className="flex items-center justify-between">
-          <h2 className="text-[40px] leading-[56px] font-semibold">Звіти</h2>
-          <Link href="/">
-            <a className="flex items-center gap-3 text-lg">
-              Більше звітів <FaArrowRight size={16} />
-            </a>
-          </Link>
-        </div>
-        <div className="flex gap-10">
-          {Reports.map((r) => (
-            <div key={r.id} className="basis-1/3">
-              <PostCard
-                imgUrl={r.imgUrl}
-                title={r.title}
-                createdAt={r.createdAt}
-                url={'asd'}
-                isVideo={r.isVideo}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="container mb-20 space-y-8">
-        <div className="flex items-center justify-between">
-          <h2 className="text-[40px] leading-[56px] font-semibold">Команда</h2>
-          <Link href="/">
-            <a className="flex items-center gap-3 text-lg">
-              Вся команда <FaArrowRight size={16} />
-            </a>
-          </Link>
-        </div>
-        <div className="flex gap-5">
-          {TeamMembers.map((m) => (
-            <div key={m.id} className="basis-full">
-              <Image
-                src={m.imgUrl}
-                height={240}
-                width={224}
-                layout="responsive"
-                alt={m.name}
-              />
-              <p className="mt-4 text-lg font-semibold">{m.name}</p>
-              <p className="text-sm text-[#929292]">{m.title}</p>
-            </div>
-          ))}
+      <section className="py-20">
+        <div className="container space-y-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+              Звіти
+            </h2>
+            <Link href="/">
+              <a className="flex items-center gap-3 text-lg">
+                Більше звітів <FaArrowRight size={16} />
+              </a>
+            </Link>
+          </div>
+          <div className="flex gap-10 overflow-x-scroll">
+            {Reports.map((r) => (
+              <div key={r.id} className="basis-1/3">
+                <PostCard
+                  imgUrl={r.imgUrl}
+                  title={r.title}
+                  createdAt={r.createdAt}
+                  url={'asd'}
+                  isVideo={r.isVideo}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="bg-[#FFD233] mb-20">
-        <div className="container flex flex-col items-center px-32 py-20 gap-y-4">
+      <section className=" bg-[#EEF0F3] py-20">
+        <div className="container space-y-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+              Команда
+            </h2>
+            <Link href="/">
+              <a className="flex items-center gap-3 text-lg">
+                Вся команда <FaArrowRight size={16} />
+              </a>
+            </Link>
+          </div>
+          <div className="flex gap-5 overflow-x-scroll">
+            {TeamMembers.map((m) => (
+              <div key={m.id} className="basis-full">
+                <Image
+                  src={m.imgUrl}
+                  height={240}
+                  width={224}
+                  layout="responsive"
+                  alt={m.name}
+                />
+                <p className="mt-4 text-lg font-semibold">{m.name}</p>
+                <p className="text-sm text-[#929292]">{m.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#FFD233] py-20">
+        <div className="container flex flex-col items-center px-32 gap-y-4">
           <h3 className="text-[#222222] text-[40px] leading-[50px] font-bold">
             Потрібна допомога?
           </h3>
@@ -258,44 +290,50 @@ const Home: NextPage<Props> = ({ partners }) => {
         </div>
       </section>
 
-      <section className="container mb-20 space-y-8">
-        <div className="space-y-2">
-          <h2 className="text-[40px] leading-[56px] font-semibold">Допомога</h2>
-          <p className="text-xl text-[#686868]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
+      <section className="py-20">
+        <div className="container space-y-8">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+              Допомога
+            </h2>
+            <p className="text-xl text-[#686868]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </div>
+          <Tabs />
         </div>
-        <Tabs />
       </section>
 
-      <section className="container mb-20 space-y-8">
-        <div className="space-y-2">
-          <h2 className="text-[40px] leading-[56px] font-semibold">
-            Партнери Фонду
-          </h2>
-        </div>
-        <div className="grid grid-cols-5">
-          {partners.data.map((partner) => (
-            <div key={partner.id} className="relative h-14">
-              <Img image={partner.attributes.logo} />
-            </div>
-          ))}
+      <section className="pb-20 ">
+        <div className="container space-y-8">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-semibold lg:text-4xl xl:text-[40px] xl:leading-[56px]">
+              Партнери Фонду
+            </h2>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-3 lg:grid-cols-5">
+            {Partners.map((partner, idx) => (
+              <div key={idx} className="relative h-16">
+                <Image
+                  src={partner.imgUrl}
+                  alt="partner"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-    </Layout>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const [partnersRes] = await Promise.all([
-    fetchAPI('partners', { populate: ['logo'] }),
-  ])
   return {
     props: {
-      partners: partnersRes,
       ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
     },
-    revalidate: 1,
   }
 }
 

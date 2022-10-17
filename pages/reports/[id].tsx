@@ -1,16 +1,21 @@
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import Breadcrumbs from '../../components/breadcrumbs'
-import Layout from '../../components/layout'
 
 const ReportPage: React.FC = () => {
   const router = useRouter()
   const { id } = router.query
   return (
-    <Layout title={`${id}`}>
+    <>
+      <Head>
+        <title>{`${id}`}</title>
+      </Head>
       <div className="container">
         <section className="mb-6">
           <Breadcrumbs />
@@ -70,8 +75,16 @@ const ReportPage: React.FC = () => {
           </div>
         </section>
       </div>
-    </Layout>
+    </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+    },
+  }
 }
 
 export default ReportPage

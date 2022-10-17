@@ -8,9 +8,14 @@
   @apply text-base font-montserrat;
 }
 
-.container {
-  @apply w-[1200px] mx-auto;
+.lg-h1 {
+  @apply text-[64px] leading-none
 }
+
+.mobile-h1 {
+  @apply text-[48px] leading-[58px]
+}
+
 
 /* @media (prefers-color-scheme: dark) {
   html {

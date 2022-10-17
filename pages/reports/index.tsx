@@ -1,8 +1,9 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
 import Checkbox from '../../components/checkbox'
-import Layout from '../../components/layout'
 import PostCard from '../../components/post_card'
 
 type Report = {
@@ -88,7 +89,10 @@ const ReportsPage: NextPage = () => {
   const [mil, setMil] = useState<boolean>(false)
 
   return (
-    <Layout title="Reports">
+    <>
+      <Head>
+        <title>Reports</title>
+      </Head>
       <section className="container relative mb-8">
         <Image src={'/reports.png'} width={1200} height={200} />
         <div className="absolute top-0 left-0 flex items-center justify-start w-full h-full px-12">
@@ -175,8 +179,16 @@ const ReportsPage: NextPage = () => {
           ))}
         </div>
       </section>
-    </Layout>
+    </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+    },
+  }
 }
 
 export default ReportsPage

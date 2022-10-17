@@ -1,9 +1,10 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Breadcrumbs from '../../../components/breadcrumbs'
-import Layout from '../../../components/layout'
 import PostCard from '../../../components/post_card'
 
 type Event = {
@@ -92,7 +93,10 @@ const MissionsPage: NextPage = () => {
   const router = useRouter()
   const { mission } = router.query
   return (
-    <Layout title={`${mission}`}>
+    <>
+      <Head>
+        <title>{`${mission}`}</title>
+      </Head>
       <section className="container mt-2 mb-6">
         <Breadcrumbs />
       </section>
@@ -159,8 +163,16 @@ const MissionsPage: NextPage = () => {
           ))}
         </div>
       </section>
-    </Layout>
+    </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+    },
+  }
 }
 
 export default MissionsPage
