@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 
 const Footer = () => {
+  const year = new Date().getFullYear()
+
   return (
     <footer>
       <section className="py-16 bg-footer-primary-bg">
@@ -44,18 +46,8 @@ const Footer = () => {
 
           <ul className="flex flex-col items-center pt-8 space-y-6 lg:order-1 lg:pt-0 lg:items-start">
             <li>
-              <Link href="/">
-                <a>Політика конфіденційності</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <a>Використання файлів Cookie</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <a>Умови використання</a>
+              <Link href="/business">
+                <a>Партнерам</a>
               </Link>
             </li>
             <li>
@@ -65,18 +57,16 @@ const Footer = () => {
             </li>
             <li>
               <Link href="/">
-                <a>FAQ</a>
+                <a>Використання файлів Cookie</a>
               </Link>
             </li>
           </ul>
         </div>
       </section>
-      <section className="py-4 bg-footer-secondary-bg">
+      <section className="py-4 text-xs bg-footer-secondary-bg font-montserrat lg:text-base">
         <div className="container flex items-center justify-between">
-          <p className="text-xs lg:text-base">
-            ©2022 DayByDay. All rights reserved
-          </p>
-          <div className="items-center hidden gap-4 lg:flex">
+          <p>©{year} DayByDay. All rights reserved</p>
+          <div className="flex items-center gap-4">
             <div>Design by</div>
             <Image
               src="/design-by.svg"

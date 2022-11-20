@@ -1,31 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-function rem2px(input, fontSize = 16) {
-  if (input == null) {
-    return input
-  }
-  switch (typeof input) {
-    case 'object':
-      if (Array.isArray(input)) {
-        return input.map((val) => rem2px(val, fontSize))
-      } else {
-        const ret = {}
-        for (const key in input) {
-          ret[key] = rem2px(input[key])
-        }
-        return ret
-      }
-    case 'string':
-      return input.replace(
-        /(\d*\.?\d+)rem$/,
-        (_, val) => `${input} /** ${parseFloat(val) * fontSize}px */`
-      )
-    default:
-      return input
-  }
-}
-
-module.exports = rem2px({
+module.exports = {
   mode: 'jit',
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -36,9 +11,15 @@ module.exports = rem2px({
       colors: {
         'footer-primary-bg': '#EEF0F3',
         'footer-secondary-bg': '#E0E4EB',
+        'dbd-yellow': '#FFD233',
+        'dbd-grey': '#929292',
+        'dbd-mid-grey': '#414141',
+        'dbd-dark-grey': '#222222',
+        'dbd-blue': '#4289F4',
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
+        atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
       },
       container: {
         center: true,
@@ -52,5 +33,6 @@ module.exports = rem2px({
   plugins: [
     require('tailwindcss-opentype'),
     require('@tailwindcss/line-clamp'),
+    require('tailwind-scrollbar-hide'),
   ],
-})
+}

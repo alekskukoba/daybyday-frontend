@@ -5,9 +5,14 @@ const nextConfig = {
   swcMinify: true,
   images: {
     loader: 'default',
-    domains: ['localhost'],
+    domains: ['localhost', 'media.graphassets.com'],
   },
-  i18n,
+  i18n: {
+    defaultLocale: i18n.defaultLocale,
+    domains: i18n.domains,
+    localeDetection: i18n.localeDetection,
+    locales: i18n.locales,
+  },
 }
 
 module.exports = nextConfig

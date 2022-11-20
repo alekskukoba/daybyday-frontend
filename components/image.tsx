@@ -1,23 +1,23 @@
 import React from 'react'
 import Image from 'next/image'
-import { getStrapiMedia } from '../pages/api/media'
-import { StrapiMedia } from '../pages/api/types'
+import { HygraphMedia } from '../pages/api/types'
 
 interface Props {
-  image: StrapiMedia
+  image: HygraphMedia
+  fill?: boolean
 }
 
-const Img: React.FC<Props> = ({ image }) => {
-  const { alternativeText, width, height } = image.data.attributes
+const Img: React.FC<Props> = ({ image, fill = false }) => {
+  const { url, width, height } = image
 
   return (
     <Image
-      layout="responsive"
+      layout={fill ? 'fill' : 'responsive'}
       width={width}
       height={height}
       objectFit="contain"
-      src={getStrapiMedia(image)}
-      alt={alternativeText || ''}
+      src={url}
+      alt={''}
     />
   )
 }

@@ -1,21 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply text-base font-montserrat;
+@layer components {
+  .text-h1 {
+    @apply font-montserrat font-semibold text-[40px] leading-[56px];
+  }
+  .text-h3 {
+    @apply font-montserrat font-semibold text-[32px] leading-[40px];
+  }
+
+  .text-body {
+    @apply text-[18px] leading-[32px] font-atkinson text-dbd-dark-grey;
+  }
+
+  .text-button {
+    @apply text-[18px] leading-[24px] font-semibold font-montserrat text-dbd-dark-grey;
+  }
+}
+
+body {
+  @apply text-body;
 }
 
 .lg-h1 {
-  @apply text-[64px] leading-none
+  @apply text-[64px] leading-none;
 }
 
 .mobile-h1 {
-  @apply text-[48px] leading-[58px]
+  @apply text-[48px] leading-[58px];
 }
-
 
 /* @media (prefers-color-scheme: dark) {
   html {

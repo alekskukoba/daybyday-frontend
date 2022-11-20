@@ -37,3 +37,9 @@ export interface Partners {
   data: Partner[]
   meta: StrapiMeta
 }
+
+export interface HygraphMedia {
+  url: string
+  width: number
+  height: number
+}
