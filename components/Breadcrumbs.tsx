@@ -3,12 +3,16 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
+interface Props {
+  title?: string
+}
+
 type Breadcrumb = {
   href: string
   text: string
 }
 
-const Breadcrumbs: React.FC = () => {
+const Breadcrumbs: React.FC<Props> = ({ title }) => {
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -20,7 +24,11 @@ const Breadcrumbs: React.FC = () => {
 
     const crumblist = asPathNestedRoutes.map((subpath, idx) => {
       const href = '/' + asPathNestedRoutes.slice(0, idx + 1).join('/')
-      return { href, text: `nav.${subpath}` }
+      let text = `nav.${subpath}`
+      if (title && idx === asPathNestedRoutes.length - 1) {
+        text = title
+      }
+      return { href, text }
     })
 
     return [{ href: '/', text: t('nav.home') }, ...crumblist]

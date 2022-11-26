@@ -12,7 +12,9 @@ module.exports = {
         'footer-primary-bg': '#EEF0F3',
         'footer-secondary-bg': '#E0E4EB',
         'dbd-yellow': '#FFD233',
+        'dbd-dark-yellow': '#FFBA33',
         'dbd-grey': '#929292',
+        'dbd-lite-grey': '#F7F8FB',
         'dbd-mid-grey': '#414141',
         'dbd-dark-grey': '#222222',
         'dbd-blue': '#4289F4',
@@ -34,5 +36,6 @@ module.exports = {
     require('tailwindcss-opentype'),
     require('@tailwindcss/line-clamp'),
     require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }

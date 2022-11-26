@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Fund",
+    "missions": "Missions",
+    "gallery": "Gallery",
+    "donations": "Donations",
+    "business": "For Partners",
+    "team": "Team",
+    "programs": "Support programs",
+
+    "humanitarian": "Humanitarian aid",
+    "children": "Children aid",
+    "army": "Army aid",
+    "boilers": "Production of stoves",
+
+    "requisites": "Requisites"
+  },
+  "locale": {
+    "uk": "Укр",
+    "en": "Eng"
+  },
+  "button": {
+    "donate": "Donate",
+    "support": "Support",
+    "details": "Details",
+    "watch": "Watch more",
+    "allTeam": "Вся команда"
+  },
+
+  "page": {
+    "home": "It's easy to help - just take a step forward",
+    "about": "About the Fund",
+    "team": "Team",
+    "business": "For Partners",
+    "gallery": "Gallery",
+    "projects": "Support programs",
+    "partners": "Partners",
+    "requisites": "Requisites"
+  },
+
+  "section": {
+    "aboutTheFund": {
+      "body": "Thanks to brave, determined and compassionate people, the \"DAY BY DAY\" Foundation was created on May 18, 2022. Due to the coordinated cooperation of the entire team, well-organized logistics in Ukraine and Europe, the help of our permanent partners and the trust of thousands of people from all over the world, we are able to timely help those who need it most. We have experience in providing humanitarian aid in extremely difficult conditions, in hot spots, experience in evacuation of the people from frontline areas, and the understanding of the needs of people in all corners of Ukraine. We have already managed to feed, warm and help 10,000 people from all over Ukraine with warm things and medicine. Join us and together we will do many more good deeds. It's easy to help - just take a step forward."
+    },
+    "supportTheFund": {
+      "title": "Support the fund",
+      "body": "All our projects are very important. You can support us by donating to the general accounts"
+    },
+    "team": {
+      "body": "Our team includes professional managers, medical experts, IT department specialists, accountant, lawyer, financier, marketing director, translators, logisticians, car selection specialists and other volunteers who are united by their love for Ukraine, courage and mercy.\nDAY BY DAY, people from all over the world, those who share our beliefs join our team and help us do even more good deeds."
+    }
+  },
+
+  "footer": {
+    "legalInformation": "Legal information",
+    "phone": "Phone",
+    "email": "E-mail",
+    "copyright": "All rights reserved"
+  },
+
+  "payment": {
+    "inUkraine": {
+      "cardNumber": "Card number",
+      "recipient": "Recipient",
+      "iban": "IBAN",
+      "edrpou": "EDRPOU of the recipient",
+      "bankName": "Beneficiary's bank"
+    },
+    "swift": {
+      "companyName": "Company name",
+      "iban": "IBAN Code",
+      "bankName": "Name of the bank",
+      "bankSwiftCode": "Bank SWIFT Code",
+      "companyAddress": "Company address",
+      "correspondentBank": {
+        "account": "Account in the correspondent bank",
+        "swiftCode": "SWIFT Code of the correspondent bank",
+        "name": "Correspondent bank"
+      }
+    },
+    "crypto": {
+      "walletAddress": "Wallet address"
+    },
+    "other": {
+      "account": "Account"
+    },
+    "value": {
+      "Oleg K.": "Oleg K.",
+      "JSC CB \"PRIVATBANK\", KYIV, UKRAINE": "JSC CB \"PRIVATBANK\", KYIV, UKRAINE",
+      "CF CIF \"DAY BY DAY\"": "CF CIF \"DAY BY DAY\""
+    }
+  },
+
+  "paymentPurpose": {
+    "fund": "To support the activities of the fund, specify: \"Charity contribution. Fund support\" in the purpose of payment.",
+    "program": "To support this program, specify: \"{{purpose}}\" in the purpose of payment."
+  },
+
+  "message": {
+    "copied": "{{text}} copied"
+  },
+
+  "tabs": {
+    "inUkraine": "Within Ukraine",
+    "swift": "SWIFT",
+    "crypto": "Cryptocurrency",
+    "other": "Other"
+  }
+}

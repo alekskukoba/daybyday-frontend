@@ -6,12 +6,14 @@ export interface Report {
   id: string
   title: string
   preview: HygraphMedia
+  cover: HygraphMedia
   body: {
-    markdown: string
     html: string
   }
-  publishedAt: string | null
-  updatedAt: string
+  youTubeUrls: string[]
+  media: HygraphMedia[]
+  createdAt: string
+  slug: string
 }
 
 export interface ReportData {

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import LocaleSwitcher from './LocaleSwitcher'
 import { useRouter } from 'next/router'
-import { Button } from './Button'
 
 interface Route {
   path: string
@@ -45,14 +44,14 @@ const Header = () => {
   return (
     <header className="fixed z-10 w-full bg-white">
       <div className="container">
-        <nav className="flex items-center justify-between h-20 lg:px-0">
+        <nav className="flex items-center justify-between h-[96px] lg:px-0">
           <Link href="/">
             <a className="h-[18px] w-[200px]">
               <Image
                 src="/logo.svg"
                 alt="Vercel Logo"
                 width={200}
-                height={18}
+                height={37}
                 layout="responsive"
               />
             </a>
@@ -73,7 +72,7 @@ const Header = () => {
               <li key={idx}>
                 <Link href={r.path}>
                   <a
-                    className={`relative font-montserrat  ${
+                    className={`relative font-montserrat text-base  ${
                       router.pathname == r.path
                         ? 'after:absolute after:bottom-0 after:left-0 after:translate-y-3 after:w-6 after:h-1 after:bg-dbd-yellow'
                         : ''
@@ -88,7 +87,13 @@ const Header = () => {
           <div className="items-center hidden gap-16 lg:flex">
             <LocaleSwitcher />
             <div className="hidden xl:block">
-              <Button href="" text={t('button.support')} size="md" />
+              <Link href={'/requisites'}>
+                <a className="bg-dbd-yellow h-[48px] w-[200px] flex items-center justify-center rounded">
+                  <span className="text-lg font-semibold leading-6 font-montserrat">
+                    {t('button.support')}
+                  </span>
+                </a>
+              </Link>
             </div>
           </div>
 

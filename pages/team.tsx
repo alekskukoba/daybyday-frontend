@@ -24,36 +24,28 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
           <Breadcrumbs />
         </div>
 
-        <h1 className="mb-6 text-h1">{t('page.team')}</h1>
+        <h1 className="mb-6 text-[28px] leading-[32px] font-montserrat font-semibold lg:text-[40px] lg:leading-[56px]">
+          {t('page.team')}
+        </h1>
 
         <div className="relative mb-8">
-          <Image
-            src={'/team.png'}
-            layout="responsive"
-            height={400}
-            width={1200}
-            alt={t('page.team')}
-          />
+          <div className="h-[240px]">
+            <Image
+              src={'/team.png'}
+              layout="fill"
+              objectFit="cover"
+              alt={t('page.team')}
+            />
+          </div>
         </div>
 
         <div className="mb-10 space-y-4">
-          <p>
-            Нас, волонтерів – людей доброї волі, об’єднала ця жахлива війна. Ми
-            вирішили день за днем робити добрі та необхідні справи за для нашої
-            перемоги. До нашої команди входять військові та медичні експерти,
-            менеджери, логісти, фінансист, бухгалтер, юрист, IT відділ,
-            спеціалісти з підбору автівок, експерти з експлуатації дронів та
-            безпілотників та інші волонтери.
-          </p>
-
-          <p>
-            Наша мета – допомога.
-            <br />
-            Наша ціль – перемога!
+          <p className="text-justify whitespace-pre-line lg:text-left">
+            {t('section.team.body')}
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 sm:gap-6 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-10">
+        <div className="grid gap-4 md:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-10">
           {members.map((member) => (
             <div key={member.id} className=" basis-[270px] shrink-0">
               <Image
@@ -63,7 +55,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
                 layout="responsive"
                 alt={member.name}
               />
-              <p className="mt-4 mb-2 text-xl font-semibold leading-7 text-dbd-dark-grey font-montserrat">
+              <p className="mt-4 mb-2 text-xl font-semibold leading-6 text-dbd-dark-grey font-montserrat">
                 {member.name}
               </p>
               <p

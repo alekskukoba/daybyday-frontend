@@ -27,7 +27,7 @@ const LocaleSwitcher: React.FC = () => {
         <button
           key={idx}
           onClick={() => setLocale(l)}
-          className={`${l == locale ? 'font-bold' : ''}`}
+          className={`text-base ${l == locale ? 'underline' : ''}`}
         >
           {t(`locale.${l}`)}
         </button>

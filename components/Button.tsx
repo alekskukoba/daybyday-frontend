@@ -6,6 +6,7 @@ interface Props {
   text: string
   size?: 'sm' | 'md' | 'lg'
   full?: boolean
+  outline?: boolean
 }
 
 export const Button: React.FC<Props> = ({
@@ -13,20 +14,23 @@ export const Button: React.FC<Props> = ({
   text,
   size = 'sm',
   full = false,
+  outline = false,
 }) => {
   const sizeMap = {
-    sm: 'w-40 h-12',
-    md: 'w-48 h-12',
-    lg: 'w-72 h-14',
+    sm: `${full ? 'w-full' : 'w-40'} h-12`,
+    md: `${full ? 'w-full' : 'w-48'} h-12`,
+    lg: `${full ? 'w-full' : 'w-72'} h-14`,
   }
+
+  const outlineStyle = outline
+    ? 'border-dbd-dark-grey'
+    : 'bg-dbd-yellow border-dbd-yellow'
 
   return (
     <>
       <Link href={href}>
         <a
-          className={`flex items-center justify-center ${sizeMap[size]} ${
-            full && 'w-full'
-          } rounded bg-dbd-yellow text-button`}
+          className={`flex items-center justify-center border-2 ${sizeMap[size]} ${outlineStyle} rounded font-montserrat font-semibold text-sm sm:text-base`}
         >
           {text}
         </a>

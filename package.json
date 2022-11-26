@@ -12,6 +12,7 @@
     "@apollo/client": "^3.7.0",
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.2",
     "graphql": "^16.6.0",
     "i18next": "^21.10.0",
@@ -23,7 +24,9 @@
     "qs": "^6.11.0",
     "react": "18.2.0",
     "react-cookie": "^4.1.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
     "react-icons": "^4.4.0",
     "react-markdown": "^8.0.3",
     "react-moment": "^1.1.2",
@@ -32,11 +35,13 @@
     "remark-html": "^15.0.1",
     "sharp": "^0.31.1",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "tailwindcss-opentype": "^1.1.0"
+    "tailwindcss-opentype": "^1.1.0",
+    "yet-another-react-lightbox": "^2.2.2"
   },
   "devDependencies": {
     "@types/node": "18.8.0",
     "@types/react": "18.0.21",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "autoprefixer": "^10.4.12",

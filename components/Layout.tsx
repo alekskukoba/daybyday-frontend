@@ -19,7 +19,9 @@ const Layout: React.FC<Props> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="pt-20 grow">{children}</main>
+      <main className="pt-[96px] grow text-base leading-6 lg:text-lg lg:leading-8">
+        {children}
+      </main>
       <Footer />
     </div>
   )

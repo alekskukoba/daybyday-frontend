@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import Breadcrumbs from '../components/Breadcrumbs'
 
 const AboutPage: NextPage = () => {
@@ -18,55 +19,31 @@ const AboutPage: NextPage = () => {
           <Breadcrumbs />
         </div>
 
-        <h1 className="mb-6 text-h1">{t('page.about')}</h1>
+        <h1 className="mb-6 text-[28px] leading-[32px] font-montserrat font-semibold lg:text-[40px] lg:leading-[56px]">
+          {t('page.about')}
+        </h1>
 
-        <div className="relative mb-8">
-          <Image
-            src={'/about.png'}
-            layout="responsive"
-            height={400}
-            width={1200}
-            alt={t('page.about')}
-          />
-        </div>
+        <div className="flex flex-col gap-10 lg:flex-row">
+          <div className="relative lg:basis-[450px] shrink-0 h-[240px] lg:h-[320px]">
+            <Image
+              src={'/about.png'}
+              alt={t('page.about')}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <div className="space-y-6 text-justify">
+            <p>{t('section.aboutTheFund.body')}</p>
+            <p>{t('paymentPurpose.fund')}</p>
 
-        <div className="space-y-4">
-          <p className="font-semibold">
-            Наша мета – допомога.
-            <br />
-            Наша ціль – перемога!
-          </p>
-          <p>
-            Ми – Благодійний Фонд «DAY BY DAY» («ДЕНЬ ЗА ДНЕМ»). З перших днів
-            війни допомагаємо військовим та цивільному населенню. До нашої
-            команди входять військові та медичні експерти, менеджери, логісти,
-            фінансист, бухгалтер, юрист, IT відділ, спеціалісти з підбору
-            автівок, експерти з експлуатації дронів та безпілотників та інші
-            волонтери. Всі ми – волонтери. Забезпечуємо продуктами харчування
-            десятки тисяч людей на деокупованих територіях Київської,
-            Чернігівської, Харківської областей, доставляємо ліки, засоби
-            особистої гігієни, одяг, взуття та ін. Приймаємо участь в
-            благодійних заходах, спрямованих на підтримку дітей, які постраждали
-            від наслідків війни. На постійній основі допомагаємо
-            Спецпризначенцям ВЧ А4051, 57й бригаді - спецпідрозділу
-            &quot;Хорт&quot;, та іншим військовим за запитом.
-          </p>
-
-          <p>
-            Ми запрошуємо долучатися до нашої команди людей з України та усього
-            світу, хто має бажання та можливість прискорити перемогу України та
-            допомагати сотням тисяч українців, які найбільше цього
-            потребують.Статут нашої організації відкритий для нових членів
-            фонду. Будемо раді бачити Вас у нашій команді!
-            <br />
-            Пишіть нам:{' '}
-            <a
-              href="mailto:Help@daybyday.com.ua"
-              className="underline text-dbd-blue"
-            >
-              Help@daybyday.com.ua
-            </a>
-          </p>
+            <Link href={'/requisites'}>
+              <a className="bg-dbd-yellow h-[48px] w-[269px] flex items-center justify-center rounded mx-auto lg:mx-0">
+                <span className="text-lg font-semibold leading-6 font-montserrat">
+                  {t('button.support')}
+                </span>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </>
@@ -76,7 +53,7 @@ const AboutPage: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }
 }
