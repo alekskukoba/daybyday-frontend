@@ -1,8 +1,8 @@
 import { Report } from './reports'
-import { Program } from './programs'
-import { HygraphMedia } from './types'
 import { gql } from '@apollo/client'
 import client from './apollo'
+import { Asset } from './models/asset'
+import { Program } from './models/program'
 
 export interface Category {
   id: string
@@ -10,8 +10,8 @@ export interface Category {
   description: {
     html: string
   }
-  preview: HygraphMedia
-  cover: HygraphMedia
+  preview: Asset
+  cover: Asset
   slug: string
   programs: Program[]
   reports: Report[]

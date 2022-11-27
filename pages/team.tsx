@@ -5,7 +5,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
-import { getMembers, Member } from './api/members'
+import { getMembers } from './api/members'
+import { Member } from './api/models/member'
 
 interface Props {
   members: Member[]

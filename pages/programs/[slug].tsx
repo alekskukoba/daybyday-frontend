@@ -5,8 +5,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Breadcrumbs from '../../components/Breadcrumbs'
 import client from '../api/apollo'
-import { Category, getCategories } from '../api/categories'
-import { HygraphMedia } from '../api/types'
+import { Category } from '../api/categories'
 import {
   InformationCircleIcon,
   Square2StackIcon,
@@ -15,6 +14,7 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
+import { getPrograms } from '../api/programs'
 
 const ProgramPage: NextPage<{
   category: Category
@@ -108,14 +108,38 @@ const ProgramPage: NextPage<{
 export default ProgramPage
 
 export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-  const categories = await getCategories()
-  const paths = categories.flatMap((c) => {
-    return locales?.map((locale) => {
-      return {
-        params: { slug: c.slug },
-        locale,
+  interface Data {
+    categories: {
+      slug: string
+    }[]
+  }
+
+  const query = gql`
+    query CategorySlugs {
+      categories(locales: [en]) {
+        slug
       }
-    })
+    }
+  `
+
+  const {
+    data: { categories },
+  } = await client.query<Data>({
+    query,
+    variables: {
+      locale: 'en',
+    },
+  })
+
+  const paths = categories.flatMap((c) => {
+    return locales
+      ?.filter((locale) => locale !== 'default')
+      .map((locale) => {
+        return {
+          params: { slug: c.slug },
+          locale,
+        }
+      })
   })
 
   return {
@@ -124,60 +148,10 @@ export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
   }
 }
 
-interface Data {
-  category: {
-    id: string
-    title: string
-    description: {
-      html: string
-    }
-    preview: HygraphMedia
-    cover: HygraphMedia
-    slug: string
-    programs: {
-      id: string
-      brief: string
-      title: string
-      destination: string
-    }
-  }
-}
-
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const { slug } = params as { slug: string }
 
-  const query = gql`
-    query CategoryBySlug($slug: String!, $locale: Locale!) {
-      category(where: { slug: $slug }, locales: [$locale, en]) {
-        id
-        title
-        description {
-          html
-        }
-        cover {
-          height
-          width
-          url
-        }
-        programs {
-          id
-          brief
-          title
-          destination
-        }
-      }
-    }
-  `
-
-  const {
-    data: { category },
-  } = await client.query<Data>({
-    query,
-    variables: {
-      slug,
-      locale,
-    },
-  })
+  const category = await getPrograms(locale, slug)
 
   return {
     props: {

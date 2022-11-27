@@ -1,13 +1,6 @@
-import { HygraphMedia } from './types'
 import { gql } from '@apollo/client'
 import client from './apollo'
-
-export interface Member {
-  id: string
-  name: string
-  title: string
-  photo: HygraphMedia
-}
+import { Member } from './models/member'
 
 export interface MembersData {
   members: Member[]

@@ -1,17 +1,17 @@
-import { HygraphMedia } from './types'
 import { gql } from '@apollo/client'
 import client from './apollo'
+import { Asset } from './models/asset'
 
 export interface Report {
   id: string
   title: string
-  preview: HygraphMedia
-  cover: HygraphMedia
+  preview: Asset
+  cover: Asset
   body: {
     html: string
   }
   youTubeUrls: string[]
-  media: HygraphMedia[]
+  media: Asset[]
   createdAt: string
   slug: string
 }
@@ -85,8 +85,6 @@ export const getReportById = async (id: string, locale = 'en') => {
       locale,
     },
   })
-
-  console.log(report)
 
   return report
 }

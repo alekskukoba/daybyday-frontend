@@ -9,7 +9,7 @@ import Moment from 'react-moment'
 import Breadcrumbs from '../../../components/Breadcrumbs'
 import client from '../../api/apollo'
 import { getCategories, Category } from '../../api/categories'
-import { HygraphMedia } from '../../api/types'
+import { Asset } from '../../api/models/asset'
 
 interface Props {
   category: Category
@@ -93,12 +93,14 @@ export default GalleryPage
 export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
   const categories = await getCategories()
   const paths = categories.flatMap((c) => {
-    return locales?.map((locale) => {
-      return {
-        params: { category: c.slug },
-        locale,
-      }
-    })
+    return locales
+      ?.filter((locale) => locale !== 'default')
+      .map((locale) => {
+        return {
+          params: { category: c.slug },
+          locale,
+        }
+      })
   })
 
   return {
@@ -114,13 +116,13 @@ interface Data {
     description: {
       html: string
     }
-    preview: HygraphMedia
-    cover: HygraphMedia
+    preview: Asset
+    cover: Asset
     slug: string
     reports: {
       id: string
       title: string
-      preview: HygraphMedia
+      preview: Asset
       createdAt: string
     }
   }
@@ -129,48 +131,54 @@ interface Data {
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const slug = (params as { category: string }).category
 
-  const query = gql`
-    query CategoryBySlug($slug: String!, $locale: Locale!) {
-      category(where: { slug: $slug }, locales: [$locale, en]) {
-        id
-        title
-        description {
-          html
-        }
-        cover {
-          height
-          width
-          url
-        }
-        slug
-        reports {
+  let categoryParam
+
+  if (locale !== 'default') {
+    const query = gql`
+      query CategoryBySlug($slug: String!, $locale: Locale!) {
+        category(where: { slug: $slug }, locales: [$locale, en]) {
           id
           title
-          preview {
+          description {
+            html
+          }
+          cover {
             height
             width
             url
           }
-          createdAt
           slug
+          reports {
+            id
+            title
+            preview {
+              height
+              width
+              url
+            }
+            createdAt
+            slug
+          }
         }
       }
-    }
-  `
+    `
 
-  const {
-    data: { category },
-  } = await client.query<Data>({
-    query,
-    variables: {
-      slug,
-      locale,
-    },
-  })
+    const {
+      data: { category },
+    } = await client.query<Data>({
+      query,
+      variables: {
+        slug,
+        locale,
+      },
+    })
+
+    categoryParam = category
+  }
 
   return {
     props: {
-      category,
+      category: categoryParam,
       ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
     },
   }

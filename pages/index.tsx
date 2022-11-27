@@ -7,11 +7,13 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 
-import { getPartners, Partner } from './api/partners'
+import { getPartners } from './api/partners'
 import CategoryCard from '../components/CategoryCard'
 import { getCategories, Category } from './api/categories'
 import { useTranslation } from 'next-i18next'
-import { getMembers, Member } from './api/members'
+import { getMembers } from './api/members'
+import { Partner } from './api/models/partner'
+import { Member } from './api/models/member'
 
 const Home: NextPage<{
   partners: Partner[]

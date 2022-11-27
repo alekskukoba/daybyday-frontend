@@ -1,13 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
-import { HygraphMedia } from '../pages/api/types'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
+import { Asset } from '../pages/api/models/asset'
 
 interface Props {
   title: string
   brief: string
-  image: HygraphMedia
+  image: Asset
   url: string
   type?: 'home' | 'gallery'
 }

@@ -6,11 +6,11 @@ import Head from 'next/head'
 import Breadcrumbs from '../../../components/Breadcrumbs'
 import client from '../../api/apollo'
 import { Report } from '../../api/reports'
-import { HygraphMedia } from '../../api/types'
 import Image from 'next/image'
 import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import { useTranslation } from 'next-i18next'
+import { Asset } from '../../api/models/asset'
 
 interface Props {
   report: Report
@@ -134,12 +134,14 @@ export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
 
   const paths = categories.flatMap((category) => {
     return category.reports.flatMap((report) => {
-      return locales?.map((locale) => {
-        return {
-          params: { category: category.slug, slug: report.slug },
-          locale,
-        }
-      })
+      return locales
+        ?.filter((locale) => locale !== 'default')
+        .map((locale) => {
+          return {
+            params: { category: category.slug, slug: report.slug },
+            locale,
+          }
+        })
     })
   })
 
@@ -154,54 +156,60 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
     report: {
       id: string
       title: string
-      cover: HygraphMedia
+      cover: Asset
       body: {
         html: string
       }
       youTubeUrls: string[]
-      media: HygraphMedia[]
+      media: Asset[]
     }
   }
 
   const { slug } = params as { slug: string }
 
-  const query = gql`
-    query Report($slug: String!, $locale: Locale!) {
-      report(where: { slug: $slug }, locales: [$locale, en]) {
-        title
-        cover {
-          url
-          width
-          height
-        }
-        body {
-          html
-        }
-        youTubeUrls
-        media(first: 50) {
-          url
-          width
-          height
-          mimeType
-        }
-        createdAt
-      }
-    }
-  `
+  let reportParam
 
-  const {
-    data: { report },
-  } = await client.query<Data>({
-    query,
-    variables: {
-      slug,
-      locale,
-    },
-  })
+  if (locale !== 'default') {
+    const query = gql`
+      query Report($slug: String!, $locale: Locale!) {
+        report(where: { slug: $slug }, locales: [$locale, en]) {
+          title
+          cover {
+            url
+            width
+            height
+          }
+          body {
+            html
+          }
+          youTubeUrls
+          media(first: 50) {
+            url
+            width
+            height
+            mimeType
+          }
+          createdAt
+        }
+      }
+    `
+
+    const {
+      data: { report },
+    } = await client.query<Data>({
+      query,
+      variables: {
+        slug,
+        locale,
+      },
+    })
+
+    reportParam = report
+  }
 
   return {
     props: {
-      report,
+      report: reportParam,
       ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
     },
   }
