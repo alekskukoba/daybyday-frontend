@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       categories,
-      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }
 }

@@ -210,7 +210,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   return {
     props: {
       report: reportParam,
-      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }
 }

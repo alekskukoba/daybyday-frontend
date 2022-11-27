@@ -32,7 +32,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
         <div className="relative mb-8">
           <div className="h-[240px]">
             <Image
-              src={'/team.png'}
+              src={'/page-team.png'}
               layout="fill"
               objectFit="cover"
               alt={t('page.team')}
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       members,
-      ...(await serverSideTranslations(locale as string, ['common', 'footer'])),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }
 }
