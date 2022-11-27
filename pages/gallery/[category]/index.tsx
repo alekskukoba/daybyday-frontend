@@ -23,50 +23,59 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
         <title>Home</title>
       </Head>
 
-      <div className="container pb-20">
+      <div className="container">
         <div className="mb-4">
           <Breadcrumbs title={category.title} />
         </div>
-
-        <div className="relative h-[320px] mb-10">
+      </div>
+      <div className="lg:container">
+        <div className="relative h-[240px] lg:h-[320px] mb-10">
           <Image
             src={category.cover.url}
             layout="fill"
             objectFit="cover"
             objectPosition={'0 30%'}
             alt={category.title}
+            priority
           />
-          <div className="absolute top-0 left-0 flex items-center w-full h-full p-16 bg-black bg-opacity-40">
-            <div className="space-y-2 text-white">
-              <h1 className="font-semibold font-montserrat text-[40px] leading-[56px]">
-                {category.title}
-              </h1>
-              <div
-                dangerouslySetInnerHTML={{ __html: category.description.html }}
-              />
+          <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40">
+            <div className="container flex flex-col justify-center h-full lg:p-16">
+              <div className="space-y-2 text-white">
+                <h1 className="font-montserrat font-semibold text-[24px] leading-[28px] lg:text-[40px] lg:leading-[56px]">
+                  {category.title}
+                </h1>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: category.description.html,
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3">
+      </div>
+      <div className="container pb-20">
+        <div className="grid lg:grid-cols-3">
           {category.reports.map((report) => (
             <div key={report.id}>
-              <div className="relative h-[233px] mb-4">
+              <div className="relative h-[200px] lg:h-[233px] mb-4 rounded overflow-hidden">
                 <Image
                   src={report.preview.url}
                   layout="fill"
                   objectFit="cover"
                   alt={report.title}
+                  priority
                 />
               </div>
-              <h3 className="mb-2 text-base font-semibold leading-6 font-montserrat line-clamp-2">
+              <h3 className="mb-2 font-semibold font-montserrat line-clamp-2">
                 {report.title}
               </h3>
               <div className="flex items-center justify-between">
-                <span className="text-base text-dbd-grey">
+                <span className="text-dbd-grey">
                   <Moment format="DD.MM.YYYY">{report.createdAt}</Moment>
                 </span>
                 <Link href={`${category.slug}/${report.slug}`}>
-                  <a className="text-base font-medium leading-6 text-dbd-blue font-montserrat">
+                  <a className="font-medium text-dbd-blue font-montserrat">
                     {t('button.watch')}
                   </a>
                 </Link>

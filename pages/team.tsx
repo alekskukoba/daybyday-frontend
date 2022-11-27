@@ -19,7 +19,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
         <title>{t('page.team')}</title>
       </Head>
 
-      <div className="container pb-20">
+      <div className="container pb-12 lg:pb-20">
         <div className="mb-4">
           <Breadcrumbs />
         </div>
@@ -35,6 +35,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
               layout="fill"
               objectFit="cover"
               alt={t('page.team')}
+              priority
             />
           </div>
         </div>
@@ -47,14 +48,16 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
 
         <div className="grid gap-4 md:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-10">
           {members.map((member) => (
-            <div key={member.id} className=" basis-[270px] shrink-0">
-              <Image
-                src={member.photo.url}
-                height={member.photo.height}
-                width={member.photo.width}
-                layout="responsive"
-                alt={member.name}
-              />
+            <div key={member.id}>
+              <div className="relative aspect-1">
+                <Image
+                  src={member.photo.url}
+                  layout="fill"
+                  objectFit="cover"
+                  alt={member.name}
+                  priority
+                />
+              </div>
               <p className="mt-4 mb-2 text-xl font-semibold leading-6 text-dbd-dark-grey font-montserrat">
                 {member.name}
               </p>

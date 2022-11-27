@@ -37,9 +37,9 @@ const Breadcrumbs: React.FC<Props> = ({ title }) => {
   const breadcrumbs = generateBreadcrumbs()
 
   return (
-    <ul className="flex items-center gap-2">
+    <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
       {breadcrumbs.map((b, idx) => (
-        <li key={idx}>
+        <li key={idx} className="whitespace-nowrap">
           <Link href={b.href}>
             <a
               className={`text-sm ${

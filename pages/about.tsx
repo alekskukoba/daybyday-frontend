@@ -30,6 +30,7 @@ const AboutPage: NextPage = () => {
               alt={t('page.about')}
               layout="fill"
               objectFit="cover"
+              priority
             />
           </div>
           <div className="space-y-6 text-justify">

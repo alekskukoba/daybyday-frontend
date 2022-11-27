@@ -53,6 +53,7 @@ const Header = () => {
                 width={200}
                 height={37}
                 layout="responsive"
+                priority
               />
             </a>
           </Link>

@@ -5,7 +5,6 @@ import Head from 'next/head'
 import { useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PaymentCard from '../components/PaymentCard'
-import { Toaster } from 'react-hot-toast'
 
 interface InUkraine {
   imgUrl: string
@@ -215,7 +214,7 @@ const RequisitesPage: NextPage = () => {
                     {tab === 'inUkraine' && (
                       <>
                         {InUkraineMethods.map((m, idx) => (
-                          <div key={idx}>
+                          <div key={idx} className="overflow-hidden">
                             <PaymentCard
                               imgUrl={m.imgUrl}
                               title={m.name}
@@ -267,7 +266,7 @@ const RequisitesPage: NextPage = () => {
                     {tab === 'swift' && (
                       <>
                         {SwiftAccounts.map((s, idx) => (
-                          <div key={idx}>
+                          <div key={idx} className="overflow-hidden">
                             <PaymentCard
                               imgUrl={'/payments/swift.svg'}
                               title={'Swift'}
@@ -323,7 +322,7 @@ const RequisitesPage: NextPage = () => {
                     {tab === 'crypto' && (
                       <>
                         {Crypo.map((c, idx) => (
-                          <div key={idx}>
+                          <div key={idx} className="overflow-hidden">
                             <PaymentCard
                               imgUrl={c.imgUrl}
                               title={c.name}
@@ -343,7 +342,7 @@ const RequisitesPage: NextPage = () => {
                     {tab === 'other' && (
                       <>
                         {OtherMethods.map((m, idx) => (
-                          <div key={idx}>
+                          <div key={idx} className="overflow-hidden">
                             <PaymentCard
                               imgUrl={m.imgUrl}
                               title={m.name}
@@ -366,7 +365,6 @@ const RequisitesPage: NextPage = () => {
           </div>
         </div>
       </div>
-      <Toaster position="bottom-center" />
     </>
   )
 }

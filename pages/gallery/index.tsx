@@ -18,12 +18,14 @@ const GalleryPage: NextPage<Props> = ({ categories = [] }) => {
         <title>Home</title>
       </Head>
 
-      <div className="container pb-20">
+      <div className="container pb-12 lg:pb-20">
         <div className="mb-4">
           <Breadcrumbs />
         </div>
 
-        <h1 className="mb-6 text-h1">{t('page.gallery')}</h1>
+        <h1 className="mb-6 text-[28px] leading-[32px] font-montserrat font-semibold lg:text-[40px] lg:leading-[56px]">
+          {t('page.gallery')}
+        </h1>
 
         <div className="space-y-6">
           {categories.map((category) => (

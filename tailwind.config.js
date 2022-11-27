@@ -9,8 +9,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'footer-primary-bg': '#EEF0F3',
-        'footer-secondary-bg': '#E0E4EB',
+        'dbd-footer-primary-bg': '#EEF0F3',
+        'dbd-footer-secondary-bg': '#E0E4EB',
         'dbd-yellow': '#FFD233',
         'dbd-dark-yellow': '#FFBA33',
         'dbd-grey': '#929292',
