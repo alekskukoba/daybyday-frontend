@@ -64,7 +64,7 @@ const Footer = () => {
       <section className="py-4 text-xs bg-footer-secondary-bg font-montserrat lg:text-base">
         <div className="container flex items-center justify-between">
           <p>
-            ©{year} DayByDay. {t('footer.copyright')}
+            ©{year} DAYBYDAY. {t('footer.copyright')}
           </p>
           <div className="flex items-center gap-4">
             <div className="hidden sm:block">Design by</div>

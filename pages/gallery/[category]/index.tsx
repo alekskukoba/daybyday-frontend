@@ -55,7 +55,7 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
         </div>
       </div>
       <div className="container pb-20">
-        <div className="grid lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {category.reports.map((report) => (
             <div key={report.id}>
               <div className="relative h-[200px] lg:h-[233px] mb-4 rounded overflow-hidden">
@@ -67,7 +67,7 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
                   priority
                 />
               </div>
-              <h3 className="mb-2 font-semibold font-montserrat line-clamp-2">
+              <h3 className="mb-2 font-semibold font-montserrat line-clamp-1">
                 {report.title}
               </h3>
               <div className="flex items-center justify-between">
@@ -148,7 +148,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
             url
           }
           slug
-          reports {
+          reports(orderBy: publishedAt_DESC) {
             id
             title
             preview {

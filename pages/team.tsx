@@ -63,7 +63,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
                 {member.name}
               </p>
               <p
-                className="text-lg leading-6 text-dbd-grey line-clamp-1"
+                className="text-[16px] leading-[24px] text-dbd-grey line-clamp-2"
                 title={member.title}
               >
                 {member.title}
@@ -77,7 +77,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const members = await getMembers()
+  const members = await getMembers(locale)
 
   return {
     props: {

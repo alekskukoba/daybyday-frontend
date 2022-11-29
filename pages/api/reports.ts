@@ -12,6 +12,7 @@ export interface Report {
   }
   youTubeUrls: string[]
   media: Asset[]
+  financialMedia: Asset[]
   createdAt: string
   slug: string
 }

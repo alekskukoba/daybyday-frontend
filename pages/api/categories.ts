@@ -32,7 +32,7 @@ export const getCategories = async (locale = 'uk') => {
 
   const query = gql`
     query Categories($locale: Locale!) {
-      categories(locales: [$locale, en]) {
+      categories(locales: [$locale, en], orderBy: priority_ASC) {
         id
         title
         description {
@@ -53,16 +53,14 @@ export const getCategories = async (locale = 'uk') => {
     }
   `
 
-  const r = await client.query<CategoriesData>({
+  const {
+    data: { categories },
+  } = await client.query<CategoriesData>({
     query,
     variables: {
       locale,
     },
   })
-
-  const {
-    data: { categories },
-  } = r
 
   return categories
 }

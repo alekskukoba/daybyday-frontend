@@ -40,18 +40,18 @@ interface Other {
 
 const InUkraineMethods: InUkraine[] = [
   {
-    imgUrl: '/payments/monobank.svg',
-    name: 'Monobank',
-    cardNumber: '5375 4114 1591 9971',
-    recipient: 'Oleg K.',
-  },
-  {
     imgUrl: '/payments/privatbank.svg',
     name: 'Privatbank',
     recipient: 'CF CIF "DAY BY DAY"',
     iban: 'UA673052990000026004006236350',
     edrpou: '44879802',
     bankName: 'JSC CB "PRIVATBANK", KYIV, UKRAINE',
+  },
+  {
+    imgUrl: '/payments/monobank.svg',
+    name: 'Monobank',
+    cardNumber: '5375 4114 1591 9971',
+    recipient: 'Oleg K.',
   },
 ]
 

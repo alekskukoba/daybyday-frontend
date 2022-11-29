@@ -33,6 +33,7 @@ const Routes: Route[] = [
 const Header = () => {
   const { t } = useTranslation()
   const router = useRouter()
+  const { locale } = router
   const [showNav, setShowNav] = useState<boolean>(false)
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const Header = () => {
           <Link href="/">
             <a className="h-[18px] w-[200px]">
               <Image
-                src="/logo.svg"
+                src={`/logo-${locale}.svg`}
                 alt="Vercel Logo"
                 width={200}
                 height={37}

@@ -9,7 +9,7 @@
   },
   "emmet.showSuggestionsAsSnippets": true,
   "i18n-ally.localesPaths": ["public/locales"],
-  "i18n-ally.dirStructure": "file",
+  "i18n-ally.dirStructure": "auto",
   "i18n-ally.autoDetection": true,
   "i18n-ally.keystyle": "nested",
   "i18n-ally.extract.ignoredByFiles": {}

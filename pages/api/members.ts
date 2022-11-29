@@ -6,14 +6,14 @@ export interface MembersData {
   members: Member[]
 }
 
-export const getMembers = async (locale = 'uk') => {
+export const getMembers = async (locale = 'uk', first = 100) => {
   if (locale === 'default') {
     return []
   }
 
   const query = gql`
-    query Members($locale: Locale!) {
-      members(locales: [$locale, en]) {
+    query Members($locale: Locale!, $first: Int) {
+      members(locales: [$locale, en], first: $first) {
         id
         name
         title
@@ -32,6 +32,7 @@ export const getMembers = async (locale = 'uk') => {
     query,
     variables: {
       locale,
+      first,
     },
   })
 

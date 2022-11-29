@@ -17,7 +17,8 @@ interface Props {
 }
 
 const GalleryPage: NextPage<Props> = ({ report }) => {
-  const [index, setIndex] = useState(-1)
+  const [mediaIndex, setMediaIndex] = useState(-1)
+  const [financialMediaIndex, setFinancialMediaIndex] = useState(-1)
   const { t } = useTranslation()
 
   return (
@@ -68,7 +69,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
           </div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {report.media.map((item, idx) => (
             <div key={idx} className="relative aspect-w-1 aspect-h-1">
               <Image
@@ -77,7 +78,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
                 alt={report.title}
                 objectFit="cover"
                 objectPosition={'0 0'}
-                onClick={() => setIndex(idx)}
+                onClick={() => setMediaIndex(idx)}
                 className="cursor-pointer"
                 priority
               />
@@ -86,10 +87,42 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
         </div>
 
         <Lightbox
-          open={index >= 0}
-          close={() => setIndex(-1)}
-          index={index}
+          open={mediaIndex >= 0}
+          close={() => setMediaIndex(-1)}
+          index={mediaIndex}
           slides={report.media.map((item) => {
+            return {
+              src: item.url,
+            }
+          })}
+        />
+
+        <h3 className="my-10 font-montserrat font-semibold text-[24px] leading-[28px]">
+          {t('title.financialReport')}
+        </h3>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+          {report.financialMedia.map((item, idx) => (
+            <div key={idx} className="relative aspect-w-1 aspect-h-1">
+              <Image
+                src={item.url}
+                layout="fill"
+                alt={report.title}
+                objectFit="cover"
+                objectPosition={'0 0'}
+                onClick={() => setFinancialMediaIndex(idx)}
+                className="cursor-pointer"
+                priority
+              />
+            </div>
+          ))}
+        </div>
+
+        <Lightbox
+          open={financialMediaIndex >= 0}
+          close={() => setFinancialMediaIndex(-1)}
+          index={financialMediaIndex}
+          slides={report.financialMedia.map((item) => {
             return {
               src: item.url,
             }
@@ -183,7 +216,13 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
             html
           }
           youTubeUrls
-          media(first: 50) {
+          media(first: 200) {
+            url
+            width
+            height
+            mimeType
+          }
+          financialMedia(first: 200) {
             url
             width
             height

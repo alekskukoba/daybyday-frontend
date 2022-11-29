@@ -1,20 +1,25 @@
 import React from 'react'
 
 import { GlobeAltIcon } from '@heroicons/react/24/outline'
-import { useCookies } from 'react-cookie'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 const LocaleSwitcher: React.FC = () => {
   const router = useRouter()
-  const { pathname, asPath, query, locale = 'en', locales = [] } = router
+  const {
+    pathname,
+    asPath,
+    query,
+    locale = 'uk',
+    locales = ['uk', 'en'],
+  } = router
   const { t } = useTranslation()
-  const [, setCookie] = useCookies(['NEXT_LOCALE'])
+  // const [, setCookie] = useCookies(['NEXT_LOCALE'])
 
   const availableLocales = locales.filter((l) => l != 'default')
 
   const setLocale = (locale: string) => {
-    setCookie('NEXT_LOCALE', locale, { path: '/' })
+    // setCookie('NEXT_LOCALE', locale, { path: '/' })
     router.push({ pathname, query }, asPath, {
       locale: locale,
     })

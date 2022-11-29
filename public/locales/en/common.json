@@ -12,7 +12,12 @@
     "children": "Children aid",
     "army": "Army aid",
     "boilers": "Production of stoves",
-    "requisites": "Requisites"
+    "requisites": "Requisites",
+
+    "сhildrens-aid": "Сhildren's Aid",
+    "assistance-of-the-armed-forces": "Assistance of the Armed Forces",
+    "humanitarian-help": "Humanitarian help",
+    "production-of-potbelly-stoves": "Production of potbelly stoves"
   },
   "locale": {
     "uk": "Укр",
@@ -26,7 +31,7 @@
     "allTeam": "All team"
   },
   "page": {
-    "home": "It's easy to help - just take a step forward",
+    "home": "It's easy to help — just take a step forward",
     "about": "About the Fund",
     "team": "Team",
     "business": "For Partners",
@@ -44,7 +49,7 @@
       "body": "All our projects are very important. You can support us by donating to the general accounts"
     },
     "team": {
-      "body": "Our team includes professional managers, medical experts, IT department specialists, accountant, lawyer, financier, marketing director, translators, logisticians, car selection specialists and other volunteers who are united by their love for Ukraine, courage and mercy.\nDAY BY DAY, people from all over the world, those who share our beliefs join our team and help us do even more good deeds."
+      "body": "Our team includes professional managers, medical experts, IT department specialists, accountant, lawyer, financier, marketing director, translators, logisticians, car selection specialists and other volunteers who are united by their love for Ukraine, courage and mercy.\nDAY BY DAY people from all over the world join our team and help us to do more good deeds."
     }
   },
   "footer": {
@@ -87,7 +92,7 @@
   },
   "paymentPurpose": {
     "fund": "To support the activities of the fund, specify: \"Charity contribution. Fund support\" in the purpose of payment.",
-    "program": "To support this program, specify: \"{{purpose}}\" in the purpose of payment."
+    "program": "To support this program, specify: {{purpose}} in the purpose of payment."
   },
   "message": {
     "paymentPurposeCopied": "The purpose of payment copied",
@@ -99,5 +104,9 @@
     "swift": "SWIFT",
     "crypto": "Cryptocurrency",
     "other": "Other"
+  },
+
+  "title": {
+    "financialReport": "Financial report"
   }
 }

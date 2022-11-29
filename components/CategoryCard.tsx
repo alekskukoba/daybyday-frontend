@@ -32,7 +32,7 @@ const CategoryCard: React.FC<Props> = ({
           priority
         />
       </div>
-      <div className="flex flex-col p-6">
+      <div className="flex flex-col p-6 grow">
         <h3 className="mb-2 font-montserrat font-semibold text-[24px] leading-[28px]">
           {title}
         </h3>

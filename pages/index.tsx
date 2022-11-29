@@ -99,15 +99,13 @@ const Home: NextPage<{
 
       <section className="py-12 xl:py-20">
         <div className="container space-y-8">
-          <div className="flex justify-between items-d">
+          <div className="flex items-center justify-between">
             <h2 className="text-[28px] leading-[32px] font-montserrat font-semibold lg:text-[40px] lg:leading-[56px]">
               {t('page.team')}
             </h2>
             <Link href="/team">
               <a className="flex items-center gap-3 ">
-                <span className="hidden text-lg lg:block">
-                  {t('button.allTeam')}
-                </span>{' '}
+                <span className="">{t('button.allTeam')}</span>{' '}
                 <ArrowRightIcon className="w-5 h-5" />
               </a>
             </Link>
@@ -167,7 +165,7 @@ const Home: NextPage<{
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const categories = await getCategories(locale)
-  const members = await getMembers(locale)
+  const members = await getMembers(locale, 4)
   const partners = await getPartners(locale)
 
   return {
