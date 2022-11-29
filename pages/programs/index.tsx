@@ -27,7 +27,7 @@ const GalleryPage: NextPage<Props> = ({ categories = [] }) => {
           {t('page.projects')}
         </h1>
 
-        <div className="grid gap-10 lg:grid-cols-2">
+        <div className="space-y-6">
           {categories.map((category) => (
             <CategoryCard
               key={category.id}

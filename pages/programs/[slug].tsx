@@ -1,10 +1,11 @@
-import { gql } from '@apollo/client'
-import { GetStaticPathsContext, GetStaticProps, NextPage } from 'next'
+// import { gql } from '@apollo/client'
+// import { GetServerSideProps, GetStaticPathsContext, GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
 import Breadcrumbs from '../../components/Breadcrumbs'
-import client from '../api/apollo'
+// import client from '../api/apollo'
 import { Category } from '../api/categories'
 import {
   InformationCircleIcon,
@@ -107,48 +108,47 @@ const ProgramPage: NextPage<{
 
 export default ProgramPage
 
-export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-  interface Data {
-    categories: {
-      slug: string
-    }[]
-  }
+// export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
+//   interface Data {
+//     categories: {
+//       slug: string
+//     }[]
+//   }
 
-  const query = gql`
-    query CategorySlugs {
-      categories(locales: [en]) {
-        slug
-      }
-    }
-  `
+//   const query = gql`
+//     query CategorySlugs {
+//       categories(locales: [en]) {
+//         slug
+//       }
+//     }
+//   `
+//   const {
+//     data: { categories },
+//   } = await client.query<Data>({
+//     query,
+//   })
 
-  const {
-    data: { categories },
-  } = await client.query<Data>({
-    query,
-    variables: {
-      locale: 'en',
-    },
-  })
+//   const paths = categories.flatMap((c) => {
+//     return locales
+//       ?.filter((locale) => locale !== 'default')
+//       .map((locale) => {
+//         return {
+//           params: { slug: c.slug },
+//           locale,
+//         }
+//       })
+//   })
 
-  const paths = categories.flatMap((c) => {
-    return locales
-      ?.filter((locale) => locale !== 'default')
-      .map((locale) => {
-        return {
-          params: { slug: c.slug },
-          locale,
-        }
-      })
-  })
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
 
-  return {
-    paths,
-    fallback: false,
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  params,
+}) => {
   const { slug } = params as { slug: string }
 
   const category = await getPrograms(locale, slug)

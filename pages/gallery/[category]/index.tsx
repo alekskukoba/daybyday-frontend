@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Moment from 'react-moment'
 import Breadcrumbs from '../../../components/Breadcrumbs'
 import client from '../../api/apollo'
-import { getCategories, Category } from '../../api/categories'
+import { Category } from '../../api/categories'
 import { Asset } from '../../api/models/asset'
 
 interface Props {
@@ -91,7 +91,26 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
 export default GalleryPage
 
 export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-  const categories = await getCategories()
+  interface Data {
+    categories: {
+      slug: string
+    }[]
+  }
+
+  const query = gql`
+    query CategorySlugs {
+      categories(locales: [en]) {
+        slug
+      }
+    }
+  `
+
+  const {
+    data: { categories },
+  } = await client.query<Data>({
+    query,
+  })
+
   const paths = categories.flatMap((c) => {
     return locales
       ?.filter((locale) => locale !== 'default')
