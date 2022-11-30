@@ -56,6 +56,7 @@ const Header = () => {
                 height={37}
                 layout="responsive"
                 unoptimized
+                priority
               />
             </a>
           </Link>
