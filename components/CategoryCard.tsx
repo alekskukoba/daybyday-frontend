@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import { Asset } from '../pages/api/models/asset'
+import { Asset } from '../graphql/models/asset'
 
 interface Props {
   title: string

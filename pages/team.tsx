@@ -1,12 +1,12 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
-import { getMembers } from './api/members'
-import { Member } from './api/models/member'
+import { getMembers } from '../graphql/members'
+import { Member } from '../graphql/models/member'
 
 interface Props {
   members: Member[]
@@ -76,7 +76,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const members = await getMembers(locale)
 
   return {

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { GetStaticPathsContext, GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
@@ -7,9 +7,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Moment from 'react-moment'
 import Breadcrumbs from '../../../components/Breadcrumbs'
-import client from '../../api/apollo'
-import { Category } from '../../api/categories'
-import { Asset } from '../../api/models/asset'
+import client from '../../../graphql/apollo'
+import { Category } from '../../../graphql/categories'
+import { Asset } from '../../../graphql/models/asset'
 
 interface Props {
   category: Category
@@ -90,43 +90,43 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
 
 export default GalleryPage
 
-export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-  interface Data {
-    categories: {
-      slug: string
-    }[]
-  }
+// export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
+//   interface Data {
+//     categories: {
+//       slug: string
+//     }[]
+//   }
 
-  const query = gql`
-    query CategorySlugs {
-      categories(locales: [en]) {
-        slug
-      }
-    }
-  `
+//   const query = gql`
+//     query CategorySlugs {
+//       categories(locales: [en]) {
+//         slug
+//       }
+//     }
+//   `
 
-  const {
-    data: { categories },
-  } = await client.query<Data>({
-    query,
-  })
+//   const {
+//     data: { categories },
+//   } = await client.query<Data>({
+//     query,
+//   })
 
-  const paths = categories.flatMap((c) => {
-    return locales
-      ?.filter((locale) => locale !== 'default')
-      .map((locale) => {
-        return {
-          params: { category: c.slug },
-          locale,
-        }
-      })
-  })
+//   const paths = categories.flatMap((c) => {
+//     return locales
+//       ?.filter((locale) => locale !== 'default')
+//       .map((locale) => {
+//         return {
+//           params: { category: c.slug },
+//           locale,
+//         }
+//       })
+//   })
 
-  return {
-    paths,
-    fallback: false,
-  }
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
 
 interface Data {
   category: {
@@ -147,7 +147,10 @@ interface Data {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  params,
+}) => {
   const slug = (params as { category: string }).category
 
   let categoryParam

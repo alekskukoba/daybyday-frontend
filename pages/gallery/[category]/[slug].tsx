@@ -1,16 +1,16 @@
 import { gql } from '@apollo/client'
 import Moment from 'react-moment'
-import { GetStaticPathsContext, GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Breadcrumbs from '../../../components/Breadcrumbs'
-import client from '../../api/apollo'
-import { Report } from '../../api/reports'
+import client from '../../../graphql/apollo'
 import Image from 'next/image'
 import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import { useTranslation } from 'next-i18next'
-import { Asset } from '../../api/models/asset'
+import { Asset } from '../../../graphql/models/asset'
+import { Report } from '../../../graphql/models/report'
 
 interface Props {
   report: Report
@@ -18,7 +18,7 @@ interface Props {
 
 const GalleryPage: NextPage<Props> = ({ report }) => {
   const [mediaIndex, setMediaIndex] = useState(-1)
-  const [financialMediaIndex, setFinancialMediaIndex] = useState(-1)
+  // const [financialMediaIndex, setFinancialMediaIndex] = useState(-1)
   const { t } = useTranslation()
 
   return (
@@ -69,7 +69,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
           </div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+        {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {report.media.map((item, idx) => (
             <div key={idx} className="relative aspect-w-1 aspect-h-1">
               <Image
@@ -127,6 +127,34 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
               src: item.url,
             }
           })}
+        /> */}
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+          {report.testMedia.map((item, idx) => (
+            <div key={idx} className="relative aspect-w-1 aspect-h-1">
+              <Image
+                src={item.url}
+                layout="fill"
+                alt={report.title}
+                objectFit="cover"
+                objectPosition={'0 0'}
+                onClick={() => setMediaIndex(idx)}
+                className="cursor-pointer"
+                priority
+              />
+            </div>
+          ))}
+        </div>
+
+        <Lightbox
+          open={mediaIndex >= 0}
+          close={() => setMediaIndex(-1)}
+          index={mediaIndex}
+          slides={report.media.map((item) => {
+            return {
+              src: item.url,
+            }
+          })}
         />
       </div>
     </>
@@ -135,56 +163,59 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
 
 export default GalleryPage
 
-export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-  interface Data {
-    categories: {
-      slug: string
-      reports: {
-        slug: string
-      }[]
-    }[]
-  }
+// export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
+//   interface Data {
+//     categories: {
+//       slug: string
+//       reports: {
+//         slug: string
+//       }[]
+//     }[]
+//   }
 
-  const query = gql`
-    query CategoryBySlug($locale: Locale!) {
-      categories(locales: [$locale, en]) {
-        slug
-        reports {
-          slug
-        }
-      }
-    }
-  `
+//   const query = gql`
+//     query CategoryBySlug($locale: Locale!) {
+//       categories(locales: [$locale, en]) {
+//         slug
+//         reports {
+//           slug
+//         }
+//       }
+//     }
+//   `
 
-  const {
-    data: { categories },
-  } = await client.query<Data>({
-    query,
-    variables: {
-      locale: 'en',
-    },
-  })
+//   const {
+//     data: { categories },
+//   } = await client.query<Data>({
+//     query,
+//     variables: {
+//       locale: 'en',
+//     },
+//   })
 
-  const paths = categories.flatMap((category) => {
-    return category.reports.flatMap((report) => {
-      return locales
-        ?.filter((locale) => locale !== 'default')
-        .map((locale) => {
-          return {
-            params: { category: category.slug, slug: report.slug },
-            locale,
-          }
-        })
-    })
-  })
+//   const paths = categories.flatMap((category) => {
+//     return category.reports.flatMap((report) => {
+//       return locales
+//         ?.filter((locale) => locale !== 'default')
+//         .map((locale) => {
+//           return {
+//             params: { category: category.slug, slug: report.slug },
+//             locale,
+//           }
+//         })
+//     })
+//   })
 
-  return {
-    paths,
-    fallback: false,
-  }
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
 
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  params,
+}) => {
   interface Data {
     report: {
       id: string
@@ -229,6 +260,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
             mimeType
           }
           createdAt
+          testMedia
         }
       }
     `

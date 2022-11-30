@@ -5,7 +5,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     loader: 'default',
-    domains: ['localhost', 'media.graphassets.com'],
+    domains: ['localhost', 'media.graphassets.com', 'res.cloudinary.com'],
   },
   i18n: {
     defaultLocale: i18n.defaultLocale,

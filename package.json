@@ -19,6 +19,7 @@
     "i18next-browser-languagedetector": "^6.1.8",
     "moment": "^2.29.4",
     "next": "12.3.1",
+    "next-cloudinary": "^1.2.0",
     "next-i18next": "^12.1.0",
     "photoswipe": "^5.3.2",
     "qs": "^6.11.0",

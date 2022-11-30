@@ -6,7 +6,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Breadcrumbs from '../../components/Breadcrumbs'
 // import client from '../api/apollo'
-import { Category } from '../api/categories'
+import { Category } from '../../graphql/categories'
 import {
   InformationCircleIcon,
   Square2StackIcon,
@@ -15,7 +15,7 @@ import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
-import { getPrograms } from '../api/programs'
+import { getPrograms } from '../../graphql/programs'
 
 const ProgramPage: NextPage<{
   category: Category

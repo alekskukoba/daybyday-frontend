@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Head from 'next/head'
 import Breadcrumbs from '../../components/Breadcrumbs'
 import CategoryCard from '../../components/CategoryCard'
-import { getCategories, Category } from '../api/categories'
+import { getCategories, Category } from '../../graphql/categories'
 
 interface Props {
   categories: Category[]
