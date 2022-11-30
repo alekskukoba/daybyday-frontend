@@ -11,6 +11,7 @@ interface Props {
   image: CloudinaryAsset
   url: string
   type?: 'home' | 'gallery'
+  grey?: boolean
 }
 
 const CategoryCard: React.FC<Props> = ({
@@ -19,11 +20,16 @@ const CategoryCard: React.FC<Props> = ({
   image,
   url,
   type = 'home',
+  grey = false,
 }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white rounded shadow-lg lg:flex-row">
+    <div
+      className={`flex flex-col overflow-hidden ${
+        grey ? ' bg-dbd-footer-primary-bg' : 'bg-white'
+      } rounded shadow-lg lg:flex-row`}
+    >
       <div className="relative h-[200px] lg:h-[300px] lg:basis-[478px] shrink-0 grow-0">
         <Image
           src={getImgPath(image)}

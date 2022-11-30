@@ -9,7 +9,8 @@ import Moment from 'react-moment'
 import Breadcrumbs from '../../../components/Breadcrumbs'
 import client from '../../../graphql/apollo'
 import { Category } from '../../../graphql/categories'
-import { Asset } from '../../../graphql/models/asset'
+import { getImgPath } from '../../../graphql/members'
+import { CloudinaryAsset } from '../../../graphql/models/cloudinaryAsset'
 
 interface Props {
   category: Category
@@ -31,7 +32,7 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
       <div className="lg:container">
         <div className="relative h-[240px] lg:h-[320px] mb-10">
           <Image
-            src={category.cover.url}
+            src={getImgPath(category.cover)}
             layout="fill"
             objectFit="cover"
             objectPosition={'0 30%'}
@@ -60,11 +61,10 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
             <div key={report.id}>
               <div className="relative h-[200px] lg:h-[233px] mb-4 rounded overflow-hidden">
                 <Image
-                  src={report.preview.url}
+                  src={getImgPath(report.preview)}
                   layout="fill"
                   objectFit="cover"
                   alt={report.title}
-                  priority
                 />
               </div>
               <h3 className="mb-2 font-semibold font-montserrat line-clamp-1">
@@ -135,13 +135,13 @@ interface Data {
     description: {
       html: string
     }
-    preview: Asset
-    cover: Asset
+    preview: CloudinaryAsset
+    cover: CloudinaryAsset
     slug: string
     reports: {
       id: string
       title: string
-      preview: Asset
+      preview: CloudinaryAsset
       createdAt: string
     }
   }
@@ -164,20 +164,12 @@ export const getServerSideProps: GetServerSideProps = async ({
           description {
             html
           }
-          cover {
-            height
-            width
-            url
-          }
+          cover
           slug
           reports(orderBy: publishedAt_DESC) {
             id
             title
-            preview {
-              height
-              width
-              url
-            }
+            preview
             createdAt
             slug
           }

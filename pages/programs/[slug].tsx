@@ -16,6 +16,7 @@ import Link from 'next/link'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
 import { getPrograms } from '../../graphql/programs'
+import { getImgPath } from '../../graphql/members'
 
 const ProgramPage: NextPage<{
   category: Category
@@ -36,7 +37,7 @@ const ProgramPage: NextPage<{
       <div className="lg:container">
         <div className="relative h-[240px] lg:h-[320px] mb-10">
           <Image
-            src={category.cover.url}
+            src={getImgPath(category.cover)}
             layout="fill"
             objectFit="cover"
             objectPosition={'0 30%'}

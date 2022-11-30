@@ -30,7 +30,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
         </h1>
 
         <div className="relative mb-8">
-          <div className="h-[240px]">
+          <div className="h-[240px] relative">
             <Image
               src={'v1669836966/DayByDay/Pages/page-team_d7aucq.png'}
               layout="fill"

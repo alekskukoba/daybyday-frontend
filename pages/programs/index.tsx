@@ -35,6 +35,7 @@ const GalleryPage: NextPage<Props> = ({ categories = [] }) => {
               brief={category.description.html}
               image={category.preview}
               url={`/programs/${category.slug}`}
+              grey
             />
           ))}
         </div>

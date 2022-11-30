@@ -1,8 +1,8 @@
-import { Report } from './reports'
 import { gql } from '@apollo/client'
 import client from './apollo'
 import { Program } from './models/program'
 import { CloudinaryAsset } from './models/cloudinaryAsset'
+import { Report } from './models/report'
 
 export interface Category {
   id: string

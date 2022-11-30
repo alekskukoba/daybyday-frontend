@@ -11,6 +11,7 @@ import Lightbox from 'yet-another-react-lightbox'
 import { useTranslation } from 'next-i18next'
 import { Asset } from '../../../graphql/models/asset'
 import { Report } from '../../../graphql/models/report'
+import { getImgPath } from '../../../graphql/members'
 
 interface Props {
   report: Report
@@ -18,7 +19,7 @@ interface Props {
 
 const GalleryPage: NextPage<Props> = ({ report }) => {
   const [mediaIndex, setMediaIndex] = useState(-1)
-  // const [financialMediaIndex, setFinancialMediaIndex] = useState(-1)
+  const [financialMediaIndex, setFinancialMediaIndex] = useState(-1)
   const { t } = useTranslation()
 
   return (
@@ -42,7 +43,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
 
         <div className="relative h-[240px] lg:h-[550px] mb-8 lg:mb-10">
           <Image
-            src={report.cover.url}
+            src={getImgPath(report.cover)}
             layout="fill"
             alt={report.title}
             objectFit="cover"
@@ -69,11 +70,11 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
           </div>
         )}
 
-        {/* <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {report.media.map((item, idx) => (
             <div key={idx} className="relative aspect-w-1 aspect-h-1">
               <Image
-                src={item.url}
+                src={getImgPath(item)}
                 layout="fill"
                 alt={report.title}
                 objectFit="cover"
@@ -97,65 +98,41 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
           })}
         />
 
-        <h3 className="my-10 font-montserrat font-semibold text-[24px] leading-[28px]">
-          {t('title.financialReport')}
-        </h3>
+        {report.financialMedia.length > 0 && (
+          <>
+            <h3 className="my-10 font-montserrat font-semibold text-[24px] leading-[28px]">
+              {t('title.financialReport')}
+            </h3>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {report.financialMedia.map((item, idx) => (
-            <div key={idx} className="relative aspect-w-1 aspect-h-1">
-              <Image
-                src={item.url}
-                layout="fill"
-                alt={report.title}
-                objectFit="cover"
-                objectPosition={'0 0'}
-                onClick={() => setFinancialMediaIndex(idx)}
-                className="cursor-pointer"
-                priority
-              />
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+              {report.financialMedia.map((item, idx) => (
+                <div key={idx} className="relative aspect-w-1 aspect-h-1">
+                  <Image
+                    src={getImgPath(item)}
+                    layout="fill"
+                    alt={report.title}
+                    objectFit="cover"
+                    objectPosition={'0 0'}
+                    onClick={() => setFinancialMediaIndex(idx)}
+                    className="cursor-pointer"
+                    priority
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <Lightbox
-          open={financialMediaIndex >= 0}
-          close={() => setFinancialMediaIndex(-1)}
-          index={financialMediaIndex}
-          slides={report.financialMedia.map((item) => {
-            return {
-              src: item.url,
-            }
-          })}
-        /> */}
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {report.testMedia.map((item, idx) => (
-            <div key={idx} className="relative aspect-w-1 aspect-h-1">
-              <Image
-                src={item.url}
-                layout="fill"
-                alt={report.title}
-                objectFit="cover"
-                objectPosition={'0 0'}
-                onClick={() => setMediaIndex(idx)}
-                className="cursor-pointer"
-                priority
-              />
-            </div>
-          ))}
-        </div>
-
-        <Lightbox
-          open={mediaIndex >= 0}
-          close={() => setMediaIndex(-1)}
-          index={mediaIndex}
-          slides={report.media.map((item) => {
-            return {
-              src: item.url,
-            }
-          })}
-        />
+            <Lightbox
+              open={financialMediaIndex >= 0}
+              close={() => setFinancialMediaIndex(-1)}
+              index={financialMediaIndex}
+              slides={report.financialMedia.map((item) => {
+                return {
+                  src: item.url,
+                }
+              })}
+            />
+          </>
+        )}
       </div>
     </>
   )
@@ -238,29 +215,14 @@ export const getServerSideProps: GetServerSideProps = async ({
       query Report($slug: String!, $locale: Locale!) {
         report(where: { slug: $slug }, locales: [$locale, en]) {
           title
-          cover {
-            url
-            width
-            height
-          }
+          cover
           body {
             html
           }
           youTubeUrls
-          media(first: 200) {
-            url
-            width
-            height
-            mimeType
-          }
-          financialMedia(first: 200) {
-            url
-            width
-            height
-            mimeType
-          }
+          media
+          financialMedia
           createdAt
-          testMedia
         }
       }
     `
