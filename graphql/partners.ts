@@ -13,14 +13,10 @@ export const getPartners = async (locale = 'uk') => {
 
   const query = gql`
     query Partners($locale: Locale!) {
-      partners(locales: [$locale, en]) {
+      partners(locales: [$locale, en], orderBy: priority_ASC) {
         id
         name
-        logo {
-          url
-          width
-          height
-        }
+        logo
       }
     }
   `

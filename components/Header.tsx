@@ -49,12 +49,13 @@ const Header = () => {
           <Link href="/">
             <a className="h-[18px] w-[200px]">
               <Image
+                loader={() => `/logo-${locale}.svg`}
                 src={`/logo-${locale}.svg`}
                 alt="Vercel Logo"
                 width={200}
                 height={37}
                 layout="responsive"
-                priority
+                unoptimized
               />
             </a>
           </Link>

@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
-import { getMembers } from '../graphql/members'
+import { getImgPath, getMembers } from '../graphql/members'
 import { Member } from '../graphql/models/member'
 
 interface Props {
@@ -32,7 +32,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
         <div className="relative mb-8">
           <div className="h-[240px]">
             <Image
-              src={'/page-team.png'}
+              src={'v1669836966/DayByDay/Pages/page-team_d7aucq.png'}
               layout="fill"
               objectFit="cover"
               alt={t('page.team')}
@@ -52,7 +52,7 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
             <div key={member.id}>
               <div className="relative aspect-1">
                 <Image
-                  src={member.photo.url}
+                  src={getImgPath(member.photo)}
                   layout="fill"
                   objectFit="cover"
                   alt={member.name}

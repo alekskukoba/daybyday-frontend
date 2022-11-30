@@ -4,7 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: 'default',
+    loader: 'cloudinary',
+    path: 'http://res.cloudinary.com/alekskukoba/image/upload/',
     domains: ['localhost', 'media.graphassets.com', 'res.cloudinary.com'],
   },
   i18n: {

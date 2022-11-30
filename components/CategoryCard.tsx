@@ -2,12 +2,13 @@ import React from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import { Asset } from '../graphql/models/asset'
+import { CloudinaryAsset } from '../graphql/models/cloudinaryAsset'
+import { getImgPath } from '../graphql/members'
 
 interface Props {
   title: string
   brief: string
-  image: Asset
+  image: CloudinaryAsset
   url: string
   type?: 'home' | 'gallery'
 }
@@ -25,7 +26,7 @@ const CategoryCard: React.FC<Props> = ({
     <div className="flex flex-col overflow-hidden bg-white rounded shadow-lg lg:flex-row">
       <div className="relative h-[200px] lg:h-[300px] lg:basis-[478px] shrink-0 grow-0">
         <Image
-          src={image.url}
+          src={getImgPath(image)}
           alt="project"
           layout="fill"
           objectFit="cover"

@@ -26,7 +26,7 @@ const AboutPage: NextPage = () => {
         <div className="flex flex-col gap-10 lg:flex-row">
           <div className="relative lg:basis-[450px] shrink-0 h-[240px] lg:h-[320px]">
             <Image
-              src={'/page-home.png'}
+              src={'v1669837416/DayByDay/Pages/page-home_gtvavv.png'}
               alt={t('page.about')}
               layout="fill"
               objectFit="cover"

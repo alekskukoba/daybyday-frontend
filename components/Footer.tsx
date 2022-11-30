@@ -69,10 +69,12 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <div className="hidden sm:block">Design by</div>
             <Image
+              loader={() => '/design-by.svg'}
               src="/design-by.svg"
               alt="Design by Anton Tymoshenko"
               width={90}
               height={32}
+              unoptimized
             />
           </div>
         </div>

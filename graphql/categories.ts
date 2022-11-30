@@ -1,8 +1,8 @@
 import { Report } from './reports'
 import { gql } from '@apollo/client'
 import client from './apollo'
-import { Asset } from './models/asset'
 import { Program } from './models/program'
+import { CloudinaryAsset } from './models/cloudinaryAsset'
 
 export interface Category {
   id: string
@@ -10,8 +10,8 @@ export interface Category {
   description: {
     html: string
   }
-  preview: Asset
-  cover: Asset
+  preview: CloudinaryAsset
+  cover: CloudinaryAsset
   slug: string
   programs: Program[]
   reports: Report[]
@@ -38,16 +38,8 @@ export const getCategories = async (locale = 'uk') => {
         description {
           html
         }
-        preview {
-          height
-          width
-          url
-        }
-        cover {
-          height
-          width
-          url
-        }
+        preview
+        cover
         slug
       }
     }

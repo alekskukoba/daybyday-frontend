@@ -11,7 +11,7 @@ import { getPartners } from '../graphql/partners'
 import CategoryCard from '../components/CategoryCard'
 import { getCategories, Category } from '../graphql/categories'
 import { useTranslation } from 'next-i18next'
-import { getMembers } from '../graphql/members'
+import { getImgPath, getMembers } from '../graphql/members'
 import { Partner } from '../graphql/models/partner'
 import { Member } from '../graphql/models/member'
 
@@ -32,7 +32,7 @@ const Home: NextPage<{
         <div className="lg:container">
           <div className="relative h-[500px] lg:h-[600px]">
             <Image
-              src="/page-home.png"
+              src="v1669837416/DayByDay/Pages/page-home_gtvavv.png"
               alt=""
               layout="fill"
               objectFit="cover"
@@ -115,7 +115,7 @@ const Home: NextPage<{
               <div key={member.id}>
                 <div className="relative aspect-1">
                   <Image
-                    src={member.photo.url}
+                    src={getImgPath(member.photo)}
                     layout="fill"
                     objectFit="cover"
                     alt={member.name}
@@ -148,9 +148,8 @@ const Home: NextPage<{
             {partners.map((partner, idx) => (
               <div key={idx} className="relative my-3 h-14">
                 <Image
-                  src={partner.logo.url}
+                  src={getImgPath(partner.logo)}
                   layout="fill"
-                  priority
                   alt={partner.name}
                   objectFit="contain"
                 />
