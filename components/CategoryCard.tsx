@@ -30,7 +30,6 @@ const CategoryCard: React.FC<Props> = ({
           alt="project"
           layout="fill"
           objectFit="cover"
-          priority
         />
       </div>
       <div className="flex flex-col p-6 grow">

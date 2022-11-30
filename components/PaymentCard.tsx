@@ -27,7 +27,7 @@ const PaymentCard: React.FC<Props> = ({ imgUrl, title, value, details }) => {
         <div className="flex items-center gap-6">
           <div className=" basis-[88px] h-[88px] shrink-0 bg-white rounded-lg p-4">
             <div className="relative w-full h-full ">
-              <Image src={imgUrl} layout="fill" alt={title} priority />
+              <Image src={imgUrl} layout="fill" alt={title} />
             </div>
           </div>
           <div>

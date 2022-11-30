@@ -56,7 +56,6 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
                   layout="fill"
                   objectFit="cover"
                   alt={member.name}
-                  priority
                 />
               </div>
               <p className="mt-4 mb-2 text-xl font-semibold leading-6 text-dbd-dark-grey font-montserrat">
