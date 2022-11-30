@@ -5,7 +5,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     loader: 'cloudinary',
-    path: 'http://res.cloudinary.com/alekskukoba/image/upload/',
+    path: 'https://res.cloudinary.com/alekskukoba/image/upload/',
     domains: ['localhost', 'media.graphassets.com', 'res.cloudinary.com'],
   },
   i18n: {
