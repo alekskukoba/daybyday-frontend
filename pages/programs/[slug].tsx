@@ -68,7 +68,14 @@ const ProgramPage: NextPage<{
                 {program.title}
               </h2>
               <p className="mb-4 lg:mb-6">{program.brief}</p>
-              <div className="flex items-center gap-3 p-4 mb-4 rounded lg:mb-8 lg:p-6 bg-dbd-lite-grey">
+              <Link href={'/requisites'}>
+                <a className="bg-dbd-yellow h-[48px] w-full lg:w-[269px] flex items-center justify-center rounded mb-4 lg:mb-8">
+                  <span className="font-semibold font-montserrat ">
+                    {t('button.support')}
+                  </span>
+                </a>
+              </Link>
+              <div className="flex items-center gap-3 p-4 rounded lg:p-6 bg-dbd-lite-grey">
                 <div className="basis-6">
                   <InformationCircleIcon className="w-6 h-6 text-dbd-dark-yellow" />
                 </div>
@@ -92,13 +99,6 @@ const ProgramPage: NextPage<{
                   </CopyToClipboard>
                 </p>
               </div>
-              <Link href={'/requisites'}>
-                <a className="bg-dbd-yellow h-[48px] w-full lg:w-[269px] flex items-center justify-center rounded">
-                  <span className="font-semibold font-montserrat ">
-                    {t('button.support')}
-                  </span>
-                </a>
-              </Link>
             </div>
           ))}
         </div>

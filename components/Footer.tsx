@@ -75,6 +75,7 @@ const Footer = () => {
               width={90}
               height={32}
               unoptimized
+              priority
             />
           </div>
         </div>

@@ -14,3 +14,11 @@
     background: black;
   }
 } */
+
+#nprogress div.bar {
+  @apply bg-dbd-yellow h-1;
+}
+
+#nprogress div.peg {
+  @apply shadow shadow-dbd-yellow;
+}

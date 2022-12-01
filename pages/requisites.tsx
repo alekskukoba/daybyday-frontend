@@ -100,7 +100,6 @@ const SwiftAccounts: Swift[] = [
     iban: 'UA693052990000026009026226486',
     bankName: 'JSC CB "PRIVATBANK", 1D HRUSHEVSKOHO STR., KYIV, 01001, UKRAINE',
     bankSwiftCode: 'PBANUA2X',
-    companyAddress: 'UA 04075 м. Київ, вул Квiтки Цiсик б.12',
     correspondentBanks: [
       {
         account: '10.602602.0.100',
