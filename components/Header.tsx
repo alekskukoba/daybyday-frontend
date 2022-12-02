@@ -117,17 +117,19 @@ const Header = () => {
               <ul className="container flex flex-col items-center justify-center gap-12 grow">
                 {Routes.map((r, idx) => (
                   <li key={idx}>
-                    <Link href={r.path}>
+                    {router.pathname === r.path && (
                       <a
-                        className={`relative ${
-                          router.pathname == r.path
-                            ? 'after:absolute after:bottom-0 after:left-1/2 after:translate-y-3 after:-translate-x-1/2 after:w-6 after:h-1 after:bg-dbd-yellow'
-                            : ''
-                        }`}
+                        onClick={() => setShowNav(false)}
+                        className="relative cursor-pointer after:absolute after:bottom-0 after:left-1/2 after:translate-y-3 after:-translate-x-1/2 after:w-6 after:h-1 after:bg-dbd-yellow"
                       >
                         {t(r.text)}
                       </a>
-                    </Link>
+                    )}
+                    {router.pathname !== r.path && (
+                      <Link href={r.path}>
+                        <a>{t(r.text)}</a>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
