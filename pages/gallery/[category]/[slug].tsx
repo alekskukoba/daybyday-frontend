@@ -54,7 +54,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
 
         {report.body && (
           <div
-            className="mb-8 lg:mb-10"
+            className="mb-8 space-y-4 lg:mb-10"
             dangerouslySetInnerHTML={{ __html: report.body.html }}
           />
         )}
