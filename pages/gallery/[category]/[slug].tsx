@@ -52,10 +52,12 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
           />
         </div>
 
-        <div
-          className="mb-8 lg:mb-10"
-          dangerouslySetInnerHTML={{ __html: report.body.html }}
-        />
+        {report.body && (
+          <div
+            className="mb-8 lg:mb-10"
+            dangerouslySetInnerHTML={{ __html: report.body.html }}
+          />
+        )}
 
         {report.youTubeUrls.length > 0 && (
           <div className="grid gap-6 mb-6 lg:grid-cols-2">

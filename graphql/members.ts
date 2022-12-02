@@ -37,5 +37,6 @@ export const getMembers = async (locale = 'uk', first = 100) => {
 }
 
 export const getImgPath = (asset: CloudinaryAsset) => {
-  return `v${asset.version}/${asset.public_id}.${asset.format}`
+  const encoded = encodeURI(asset.public_id)
+  return `v${asset.version}/${encoded}.${asset.format}`
 }
