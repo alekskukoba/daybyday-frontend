@@ -1,18 +1,18 @@
-import { gql } from '@apollo/client'
+import { CloudinaryAsset } from './models/cloudinaryAsset'
 import client from './apollo'
-import { Asset } from './models/asset'
+import { gql } from '@apollo/client'
 
 export interface Report {
   id: string
   title: string
-  preview: Asset
-  cover: Asset
+  preview: CloudinaryAsset
+  cover: CloudinaryAsset
   body: {
     html: string
   }
   youTubeUrls: string[]
-  media: Asset[]
-  financialMedia: Asset[]
+  media: CloudinaryAsset[]
+  financialMedia: CloudinaryAsset[]
   createdAt: string
   slug: string
 }

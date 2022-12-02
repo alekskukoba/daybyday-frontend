@@ -1,10 +1,10 @@
 import { GetStaticProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
-import { useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
+import Head from 'next/head'
 import PaymentCard from '../components/PaymentCard'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 interface InUkraine {
   imgUrl: string
@@ -159,7 +159,8 @@ const RequisitesPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{t('page.requisites')}</title>
+        <title>{t('seo.requisites.title')}</title>
+        <meta name="description" content={t('section.supportTheFund.body')} />
       </Head>
 
       <div className="container pb-20">

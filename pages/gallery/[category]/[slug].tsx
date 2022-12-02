@@ -1,17 +1,17 @@
-import { gql } from '@apollo/client'
-import Moment from 'react-moment'
 import { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
 import Breadcrumbs from '../../../components/Breadcrumbs'
-import client from '../../../graphql/apollo'
+import { CloudinaryAsset } from '../../../graphql/models/cloudinaryAsset'
+import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
-import { useTranslation } from 'next-i18next'
-import { Asset } from '../../../graphql/models/asset'
+import Moment from 'react-moment'
 import { Report } from '../../../graphql/models/report'
+import client from '../../../graphql/apollo'
 import { getImgPath } from '../../../graphql/members'
+import { gql } from '@apollo/client'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 interface Props {
   report: Report
@@ -25,7 +25,8 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>{t('seo.report.title', { title: report.title })}</title>
+        <meta name="description" content={report.title} />
       </Head>
 
       <div className="container pb-20">
@@ -140,55 +141,6 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
 
 export default GalleryPage
 
-// export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-//   interface Data {
-//     categories: {
-//       slug: string
-//       reports: {
-//         slug: string
-//       }[]
-//     }[]
-//   }
-
-//   const query = gql`
-//     query CategoryBySlug($locale: Locale!) {
-//       categories(locales: [$locale, en]) {
-//         slug
-//         reports {
-//           slug
-//         }
-//       }
-//     }
-//   `
-
-//   const {
-//     data: { categories },
-//   } = await client.query<Data>({
-//     query,
-//     variables: {
-//       locale: 'en',
-//     },
-//   })
-
-//   const paths = categories.flatMap((category) => {
-//     return category.reports.flatMap((report) => {
-//       return locales
-//         ?.filter((locale) => locale !== 'default')
-//         .map((locale) => {
-//           return {
-//             params: { category: category.slug, slug: report.slug },
-//             locale,
-//           }
-//         })
-//     })
-//   })
-
-//   return {
-//     paths,
-//     fallback: false,
-//   }
-// }
-
 export const getServerSideProps: GetServerSideProps = async ({
   locale,
   params,
@@ -197,12 +149,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     report: {
       id: string
       title: string
-      cover: Asset
+      cover: CloudinaryAsset
       body: {
         html: string
       }
       youTubeUrls: string[]
-      media: Asset[]
+      media: CloudinaryAsset[]
     }
   }
 

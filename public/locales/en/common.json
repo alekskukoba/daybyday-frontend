@@ -108,5 +108,44 @@
 
   "title": {
     "financialReport": "Financial report"
+  },
+
+  "seo": {
+    "home": {
+      "title": "International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "about": {
+      "title": "About the Fund - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "gallery": {
+      "title": "Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "galleryCategory": {
+      "title": "{{title}} - Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "report": {
+      "title": "{{title}} - Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "programs": {
+      "title": "Support programs - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "program": {
+      "title": "{{title}} - Support programs - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "team": {
+      "title": "Team - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    },
+    "requisites": {
+      "title": "Requisites - International Charitable Foundation \"DAY BY DAY\"",
+      "description": ""
+    }
   }
 }

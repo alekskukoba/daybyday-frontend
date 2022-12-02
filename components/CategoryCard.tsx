@@ -1,9 +1,9 @@
-import React from 'react'
-import Image from 'next/image'
-import { useTranslation } from 'next-i18next'
-import Link from 'next/link'
 import { CloudinaryAsset } from '../graphql/models/cloudinaryAsset'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 import { getImgPath } from '../graphql/members'
+import { useTranslation } from 'next-i18next'
 
 interface Props {
   title: string

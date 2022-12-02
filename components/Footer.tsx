@@ -1,7 +1,7 @@
-import React from 'react'
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaFacebookF, FaInstagram } from 'react-icons/fa'
+import React from 'react'
 import { useTranslation } from 'next-i18next'
 
 const Footer = () => {

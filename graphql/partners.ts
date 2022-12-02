@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client'
-import client from './apollo'
 import { Partner } from './models/partner'
+import client from './apollo'
+import { gql } from '@apollo/client'
 
 export interface PartnersData {
   partners: Partner[]

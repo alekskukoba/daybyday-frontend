@@ -1,12 +1,12 @@
 import { GetServerSideProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { getImgPath, getMembers } from '../graphql/members'
+import Breadcrumbs from '../components/Breadcrumbs'
 import Head from 'next/head'
 import Image from 'next/image'
-import React from 'react'
-import Breadcrumbs from '../components/Breadcrumbs'
-import { getImgPath, getMembers } from '../graphql/members'
 import { Member } from '../graphql/models/member'
+import React from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 interface Props {
   members: Member[]
@@ -17,7 +17,8 @@ const TeamPage: NextPage<Props> = ({ members = [] }) => {
   return (
     <>
       <Head>
-        <title>{t('page.team')}</title>
+        <title>{t('seo.team.title')}</title>
+        <meta name="description" content={t('section.team.body')} />
       </Head>
 
       <div className="container pb-12 lg:pb-20">

@@ -1,10 +1,10 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'next-i18next'
 import LocaleSwitcher from './LocaleSwitcher'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 interface Route {
   path: string

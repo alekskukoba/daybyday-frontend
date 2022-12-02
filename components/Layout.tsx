@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import React from 'react'
 import Footer from './Footer'
+import Head from 'next/head'
 import Header from './Header'
+import React from 'react'
 
 type Props = {
   children?: React.ReactNode

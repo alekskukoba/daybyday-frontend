@@ -1,14 +1,14 @@
-import { Report } from './report'
-import { Asset } from './asset'
-import { Program } from './program'
 import { Base } from './base'
+import { CloudinaryAsset } from './cloudinaryAsset'
+import { Program } from './program'
+import { Report } from './report'
 
 export interface Category extends Base {
   description: {
     html: string
   }
-  preview: Asset
-  cover: Asset
+  preview: CloudinaryAsset
+  cover: CloudinaryAsset
   slug: string
   reports: Report[]
   programs: Program[]

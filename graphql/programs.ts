@@ -1,6 +1,6 @@
 import { CloudinaryAsset } from './models/cloudinaryAsset'
-import { gql } from '@apollo/client'
 import client from './apollo'
+import { gql } from '@apollo/client'
 
 interface Data {
   category: {
@@ -33,6 +33,7 @@ export const getPrograms = async (locale = 'uk', slug: string) => {
         title
         description {
           html
+          text
         }
         cover
         programs {

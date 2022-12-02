@@ -1,14 +1,15 @@
-import { gql } from '@apollo/client'
-import client from './apollo'
-import { Program } from './models/program'
 import { CloudinaryAsset } from './models/cloudinaryAsset'
+import { Program } from './models/program'
 import { Report } from './models/report'
+import client from './apollo'
+import { gql } from '@apollo/client'
 
 export interface Category {
   id: string
   title: string
   description: {
     html: string
+    text: string
   }
   preview: CloudinaryAsset
   cover: CloudinaryAsset
@@ -37,6 +38,7 @@ export const getCategories = async (locale = 'uk') => {
         title
         description {
           html
+          text
         }
         preview
         cover

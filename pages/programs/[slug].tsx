@@ -1,22 +1,19 @@
-// import { gql } from '@apollo/client'
-// import { GetServerSideProps, GetStaticPathsContext, GetStaticProps, NextPage } from 'next'
 import { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
-import Image from 'next/image'
-import Breadcrumbs from '../../components/Breadcrumbs'
-// import client from '../api/apollo'
-import { Category } from '../../graphql/categories'
 import {
   InformationCircleIcon,
   Square2StackIcon,
 } from '@heroicons/react/24/outline'
-import { useTranslation } from 'next-i18next'
-import Link from 'next/link'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import { Category } from '../../graphql/categories'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import toast from 'react-hot-toast'
-import { getPrograms } from '../../graphql/programs'
+import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
 import { getImgPath } from '../../graphql/members'
+import { getPrograms } from '../../graphql/programs'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import toast from 'react-hot-toast'
+import { useTranslation } from 'next-i18next'
 
 const ProgramPage: NextPage<{
   category: Category
@@ -26,7 +23,8 @@ const ProgramPage: NextPage<{
   return (
     <>
       <Head>
-        <title>{category.title}</title>
+        <title>{t('seo.program.title', { title: category.title })}</title>
+        <meta name="description" content={category.description.text} />
       </Head>
 
       <div className="container">
@@ -108,43 +106,6 @@ const ProgramPage: NextPage<{
 }
 
 export default ProgramPage
-
-// export const getStaticPaths = async ({ locales }: GetStaticPathsContext) => {
-//   interface Data {
-//     categories: {
-//       slug: string
-//     }[]
-//   }
-
-//   const query = gql`
-//     query CategorySlugs {
-//       categories(locales: [en]) {
-//         slug
-//       }
-//     }
-//   `
-//   const {
-//     data: { categories },
-//   } = await client.query<Data>({
-//     query,
-//   })
-
-//   const paths = categories.flatMap((c) => {
-//     return locales
-//       ?.filter((locale) => locale !== 'default')
-//       .map((locale) => {
-//         return {
-//           params: { slug: c.slug },
-//           locale,
-//         }
-//       })
-//   })
-
-//   return {
-//     paths,
-//     fallback: false,
-//   }
-// }
 
 export const getServerSideProps: GetServerSideProps = async ({
   locale,

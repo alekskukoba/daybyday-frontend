@@ -1,17 +1,18 @@
 import { GetStaticProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Breadcrumbs from '../components/Breadcrumbs'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import Breadcrumbs from '../components/Breadcrumbs'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const AboutPage: NextPage = () => {
   const { t } = useTranslation()
   return (
     <>
       <Head>
-        <title>{t('page.about')}</title>
+        <title>{t('seo.about.title')}</title>
+        <meta name="description" content={t('page.home')} />
       </Head>
 
       <div className="container pb-20">

@@ -1,10 +1,10 @@
+import { Category, getCategories } from '../../graphql/categories'
 import { GetStaticProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
 import Breadcrumbs from '../../components/Breadcrumbs'
 import CategoryCard from '../../components/CategoryCard'
-import { Category, getCategories } from '../../graphql/categories'
+import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 interface Props {
   categories: Category[]
@@ -15,7 +15,8 @@ const GalleryPage: NextPage<Props> = ({ categories = [] }) => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>{t('seo.programs.title')}</title>
+        <meta name="description" content={t('page.home')} />
       </Head>
 
       <div className="container pb-12 lg:pb-20">

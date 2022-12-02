@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client'
-import client from './apollo'
 import { CloudinaryAsset } from './models/cloudinaryAsset'
 import { Member } from './models/member'
+import client from './apollo'
+import { gql } from '@apollo/client'
 
 export interface MembersData {
   members: Member[]

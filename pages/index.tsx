@@ -1,19 +1,16 @@
-import type { GetStaticProps, NextPage } from 'next'
+import { Category, getCategories } from '../graphql/categories'
+import { GetStaticProps, NextPage } from 'next'
+import { getImgPath, getMembers } from '../graphql/members'
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
+import CategoryCard from '../components/CategoryCard'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { ArrowRightIcon } from '@heroicons/react/24/solid'
-
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
-
-import { getPartners } from '../graphql/partners'
-import CategoryCard from '../components/CategoryCard'
-import { getCategories, Category } from '../graphql/categories'
-import { useTranslation } from 'next-i18next'
-import { getImgPath, getMembers } from '../graphql/members'
-import { Partner } from '../graphql/models/partner'
 import { Member } from '../graphql/models/member'
+import { Partner } from '../graphql/models/partner'
+import { getPartners } from '../graphql/partners'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const Home: NextPage<{
   partners: Partner[]
@@ -25,7 +22,8 @@ const Home: NextPage<{
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>{t('seo.home.title')}</title>
+        <meta name="description" content={t('page.home')} />
       </Head>
 
       <section className="lg:pb-20">
