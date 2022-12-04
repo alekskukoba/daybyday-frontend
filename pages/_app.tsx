@@ -7,6 +7,7 @@ import type { AppProps } from 'next/app'
 import { CookiesProvider } from 'react-cookie'
 import Layout from '../components/Layout'
 import NProgress from 'nprogress' //nprogress module
+import Script from 'next/script'
 import { Toaster } from 'react-hot-toast'
 import { appWithTranslation } from 'next-i18next'
 import { useEffect } from 'react'
@@ -32,12 +33,28 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   return (
-    <CookiesProvider>
-      <Layout>
-        <Component {...pageProps} />
-        <Toaster position="bottom-center" />
-      </Layout>
-    </CookiesProvider>
+    <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload" id="ga">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+        `}
+      </Script>
+
+      <CookiesProvider>
+        <Layout>
+          <Component {...pageProps} />
+          <Toaster position="bottom-center" />
+        </Layout>
+      </CookiesProvider>
+    </>
   )
 }
 
