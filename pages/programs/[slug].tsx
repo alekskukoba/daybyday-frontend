@@ -9,16 +9,19 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import PaymentCard from '../../components/PaymentCard'
 import { getImgPath } from '../../graphql/members'
 import { getPrograms } from '../../graphql/programs'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 const ProgramPage: NextPage<{
   category: Category
 }> = ({ category }) => {
   const { t } = useTranslation()
+  const { locale } = useRouter()
 
   return (
     <>
@@ -97,6 +100,34 @@ const ProgramPage: NextPage<{
                   </CopyToClipboard>
                 </p>
               </div>
+              {locale === 'uk' && program.fundraisings.length > 0 && (
+                <div className="grid mt-6 lg:grid-cols-2 lg:mt-10">
+                  {program.fundraisings.map((fundraising, idx) => (
+                    <PaymentCard
+                      key={idx}
+                      imgUrl={'/payments/monobank.svg'}
+                      title={fundraising.title}
+                      value={''}
+                      details={[
+                        {
+                          key: 'Ціль',
+                          value: `${fundraising.target.toLocaleString()} ₴`,
+                          isCopyable: false,
+                        },
+                        {
+                          key: 'Посилання на банку',
+                          value: fundraising.jarUrl,
+                          isUrl: true,
+                        },
+                        {
+                          key: 'Номер картки банки',
+                          value: fundraising.cardNumber,
+                        },
+                      ]}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

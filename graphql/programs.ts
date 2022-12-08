@@ -1,4 +1,5 @@
 import { CloudinaryAsset } from './models/cloudinaryAsset'
+import { Program } from './models/program'
 import client from './apollo'
 import { gql } from '@apollo/client'
 
@@ -12,12 +13,7 @@ interface Data {
     preview: CloudinaryAsset
     cover: CloudinaryAsset
     slug: string
-    programs: {
-      id: string
-      brief: string
-      title: string
-      destination: string
-    }
+    programs: Program[]
   }
 }
 
@@ -41,6 +37,12 @@ export const getPrograms = async (locale = 'uk', slug: string) => {
           brief
           title
           destination
+          fundraisings {
+            title
+            target
+            jarUrl
+            cardNumber
+          }
         }
       }
     }
