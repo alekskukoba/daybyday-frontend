@@ -40,7 +40,7 @@ const PaymentCard: React.FC<Props> = ({ imgUrl, title, value, details }) => {
             </div>
           </div>
           <div>
-            <p className="leading-[24px] uppercase">{title}</p>
+            <p className="leading-[24px] uppercase line-clamp-3">{title}</p>
             <p className="leading-[24px] font-bold">{value}</p>
           </div>
         </div>

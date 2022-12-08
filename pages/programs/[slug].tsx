@@ -103,28 +103,29 @@ const ProgramPage: NextPage<{
               {locale === 'uk' && program.fundraisings.length > 0 && (
                 <div className="grid mt-6 lg:grid-cols-2 lg:mt-10">
                   {program.fundraisings.map((fundraising, idx) => (
-                    <PaymentCard
-                      key={idx}
-                      imgUrl={'/payments/monobank.svg'}
-                      title={fundraising.title}
-                      value={''}
-                      details={[
-                        {
-                          key: 'Ціль',
-                          value: `${fundraising.target.toLocaleString()} ₴`,
-                          isCopyable: false,
-                        },
-                        {
-                          key: 'Посилання на банку',
-                          value: fundraising.jarUrl,
-                          isUrl: true,
-                        },
-                        {
-                          key: 'Номер картки банки',
-                          value: fundraising.cardNumber,
-                        },
-                      ]}
-                    />
+                    <div key={idx} className="overflow-hidden">
+                      <PaymentCard
+                        imgUrl={'/payments/monobank.svg'}
+                        title={fundraising.title}
+                        value={''}
+                        details={[
+                          {
+                            key: 'Ціль',
+                            value: `${fundraising.target.toLocaleString()} ₴`,
+                            isCopyable: false,
+                          },
+                          {
+                            key: 'Посилання на банку',
+                            value: fundraising.jarUrl,
+                            isUrl: true,
+                          },
+                          {
+                            key: 'Номер картки банки',
+                            value: fundraising.cardNumber,
+                          },
+                        ]}
+                      />
+                    </div>
                   ))}
                 </div>
               )}
