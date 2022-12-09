@@ -132,7 +132,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           }
           cover
           slug
-          reports(orderBy: publishedAt_DESC) {
+          reports(irst: 100, orderBy: publishedAt_DESC) {
             id
             title
             preview
