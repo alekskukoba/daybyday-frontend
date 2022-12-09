@@ -23,8 +23,8 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
       <Head>
         <title>
           {t('seo.galleryCategory.title', { title: category.title })}
-          <meta name="description" content={category.description.text} />
         </title>
+        <meta name="description" content={category.description.text} />
       </Head>
 
       <div className="container">
@@ -132,7 +132,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           }
           cover
           slug
-          reports(irst: 100, orderBy: publishedAt_DESC) {
+          reports(first: 100, orderBy: publishedAt_DESC) {
             id
             title
             preview
