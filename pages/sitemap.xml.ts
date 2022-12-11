@@ -9,7 +9,7 @@ const Sitemap = () => {
 const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://daybyday.com.ua'
+    : 'https://www.daybyday.com.ua'
 
 const getStaticUrls = (locales: string[]) => {
   const paths = ['', '/about', '/requisites', '/team']
