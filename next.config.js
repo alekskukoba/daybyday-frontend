@@ -21,7 +21,7 @@ module.exports = {
     return [
       {
         source: '/ua',
-        destination: '/uk',
+        destination: '/',
         permanent: true,
       },
       {
