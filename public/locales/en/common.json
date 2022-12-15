@@ -50,8 +50,13 @@
     },
     "team": {
       "body": "Our team includes professional managers, medical experts, IT department specialists, accountant, lawyer, financier, marketing director, translators, logisticians, car selection specialists and other volunteers who are united by their love for Ukraine, courage and mercy.\nDAY BY DAY people from all over the world join our team and help us to do more good deeds."
+    },
+    "404": {
+      "title": "Whoops! Page not found...",
+      "body": "The page you were looking for was not found"
     }
   },
+
   "footer": {
     "legalInformation": "Legal information",
     "phone": "Phone",
