@@ -1,4 +1,7 @@
-# Allow all crawlers
+User-agent: *
+Disallow: /public/
+
 User-agent: *
 Allow: /
+
 Sitemap: https://www.daybyday.com.ua/sitemap.xml
