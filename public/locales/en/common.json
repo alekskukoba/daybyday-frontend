@@ -102,6 +102,8 @@
   "tabs": {
     "inUkraine": "Within Ukraine",
     "swift": "SWIFT",
+    "paypal": "PayPal",
+    "patreon": "Patreon",
     "crypto": "Cryptocurrency",
     "other": "Other"
   },

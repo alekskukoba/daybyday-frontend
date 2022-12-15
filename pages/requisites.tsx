@@ -124,18 +124,17 @@ const SwiftAccounts: Swift[] = [
   },
 ]
 
-const OtherMethods: Other[] = [
-  {
-    name: 'PayPal',
-    value: 'daybydayukr@gmail.com',
-    imgUrl: '/payments/paypal.svg',
-  },
-  {
-    name: 'Patreon',
-    value: 'https://www.patreon.com/daybydayfoundation',
-    imgUrl: '/payments/patreon.svg',
-  },
-]
+const PayPal: Other = {
+  name: 'PayPal',
+  value: 'daybydayukr@gmail.com',
+  imgUrl: '/payments/paypal.svg',
+}
+
+const Patreon: Other = {
+  name: 'Patreon',
+  value: 'https://www.patreon.com/daybydayfoundation',
+  imgUrl: '/payments/patreon.svg',
+}
 
 const Crypo: Other[] = [
   {
@@ -150,7 +149,7 @@ const Crypo: Other[] = [
   },
 ]
 
-const Tabs = ['inUkraine', 'swift', 'crypto', 'other']
+const Tabs = ['inUkraine', 'swift', 'paypal', 'patreon', 'crypto']
 
 const RequisitesPage: NextPage = () => {
   const [openTab, setOpenTab] = useState(0)
@@ -319,6 +318,38 @@ const RequisitesPage: NextPage = () => {
                       </>
                     )}
 
+                    {tab === 'paypal' && (
+                      <div key={idx} className="overflow-hidden">
+                        <PaymentCard
+                          imgUrl={PayPal.imgUrl}
+                          title={PayPal.name}
+                          value={''}
+                          details={[
+                            {
+                              key: 'payment.other.account',
+                              value: PayPal.value,
+                            },
+                          ]}
+                        />
+                      </div>
+                    )}
+
+                    {tab === 'patreon' && (
+                      <div key={idx} className="overflow-hidden">
+                        <PaymentCard
+                          imgUrl={Patreon.imgUrl}
+                          title={Patreon.name}
+                          value={''}
+                          details={[
+                            {
+                              key: 'payment.other.account',
+                              value: Patreon.value,
+                            },
+                          ]}
+                        />
+                      </div>
+                    )}
+
                     {tab === 'crypto' && (
                       <>
                         {Crypo.map((c, idx) => (
@@ -331,26 +362,6 @@ const RequisitesPage: NextPage = () => {
                                 {
                                   key: 'payment.crypto.walletAddress',
                                   value: c.value,
-                                },
-                              ]}
-                            />
-                          </div>
-                        ))}
-                      </>
-                    )}
-
-                    {tab === 'other' && (
-                      <>
-                        {OtherMethods.map((m, idx) => (
-                          <div key={idx} className="overflow-hidden">
-                            <PaymentCard
-                              imgUrl={m.imgUrl}
-                              title={m.name}
-                              value={''}
-                              details={[
-                                {
-                                  key: 'payment.other.account',
-                                  value: m.value,
                                 },
                               ]}
                             />
