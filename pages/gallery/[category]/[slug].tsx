@@ -48,6 +48,7 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
             layout="fill"
             alt={report.title}
             objectFit="cover"
+            objectPosition="top"
             priority
           />
         </div>

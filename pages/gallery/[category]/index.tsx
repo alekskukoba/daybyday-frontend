@@ -67,6 +67,7 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
                   src={getImgPath(report.preview)}
                   layout="fill"
                   objectFit="cover"
+                  objectPosition="top"
                   alt={report.title}
                 />
               </div>

@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About Fund",
     "missions": "Missions",
-    "gallery": "Gallery",
+    "gallery": "Done",
     "donations": "Donations",
     "business": "For Partners",
     "team": "Team",
@@ -35,7 +35,7 @@
     "about": "About the Fund",
     "team": "Team",
     "business": "For Partners",
-    "gallery": "Gallery",
+    "gallery": "Done",
     "projects": "Support programs",
     "partners": "Partners",
     "requisites": "Requisites"
@@ -127,15 +127,15 @@
       "description": ""
     },
     "gallery": {
-      "title": "Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "title": "Done - International Charitable Foundation \"DAY BY DAY\"",
       "description": ""
     },
     "galleryCategory": {
-      "title": "{{title}} - Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "title": "{{title}} - Done - International Charitable Foundation \"DAY BY DAY\"",
       "description": ""
     },
     "report": {
-      "title": "{{title}} - Gallery - International Charitable Foundation \"DAY BY DAY\"",
+      "title": "{{title}} - Done - International Charitable Foundation \"DAY BY DAY\"",
       "description": ""
     },
     "programs": {
