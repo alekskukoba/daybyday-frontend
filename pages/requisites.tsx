@@ -344,6 +344,7 @@ const RequisitesPage: NextPage = () => {
                             {
                               key: 'payment.other.account',
                               value: Patreon.value,
+                              isUrl: true,
                             },
                           ]}
                         />
