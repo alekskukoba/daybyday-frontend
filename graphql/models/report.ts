@@ -15,4 +15,5 @@ export interface Report extends Base {
 
   category: Category
   slug: string
+  eventDate: string
 }

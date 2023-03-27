@@ -76,7 +76,9 @@ const GalleryPage: NextPage<Props> = ({ category }) => {
               </h3>
               <div className="flex items-center justify-between">
                 <span className="text-dbd-grey">
-                  <Moment format="DD.MM.YYYY">{report.createdAt}</Moment>
+                  <Moment format="DD.MM.YYYY">
+                    {report.eventDate || report.createdAt}
+                  </Moment>
                 </span>
                 <Link href={`${category.slug}/${report.slug}`}>
                   <a className="font-medium text-dbd-blue font-montserrat">
@@ -109,6 +111,7 @@ interface Data {
       title: string
       preview: CloudinaryAsset
       createdAt: string
+      eventDate: string
     }
   }
 }
@@ -133,12 +136,13 @@ export const getServerSideProps: GetServerSideProps = async ({
           }
           cover
           slug
-          reports(first: 100, orderBy: publishedAt_DESC) {
+          reports(first: 100, orderBy: eventDate_DESC) {
             id
             title
             preview
             createdAt
             slug
+            eventDate
           }
         }
       }

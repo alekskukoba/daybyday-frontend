@@ -39,7 +39,9 @@ const GalleryPage: NextPage<Props> = ({ report }) => {
         </h1>
         <p className="mb-8 lg:mb-10 text-dbd-grey">
           {t('message.published')}:{' '}
-          <Moment format="DD.MM.YYYY">{report.createdAt}</Moment>
+          <Moment format="DD.MM.YYYY">
+            {report.eventDate || report.createdAt}
+          </Moment>
         </p>
 
         <div className="relative h-[240px] lg:h-[550px] mb-8 lg:mb-10">
@@ -178,6 +180,7 @@ export const getServerSideProps: GetServerSideProps = async ({
           media
           financialMedia
           createdAt
+          eventDate
         }
       }
     `

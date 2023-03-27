@@ -15,6 +15,7 @@ export interface Report {
   financialMedia: CloudinaryAsset[]
   createdAt: string
   slug: string
+  eventDate: string
 }
 
 export interface ReportData {
@@ -41,6 +42,7 @@ export const getReports = async (locale = 'en') => {
         }
         publishedAt
         updatedAt
+        eventDate
       }
     }
   `
@@ -73,6 +75,7 @@ export const getReportById = async (id: string, locale = 'en') => {
         }
         publishedAt
         updatedAt
+        eventDate
       }
     }
   `
