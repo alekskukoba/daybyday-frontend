@@ -47,12 +47,6 @@ const InUkraineMethods: InUkraine[] = [
     edrpou: '44879802',
     bankName: 'JSC CB "PRIVATBANK", KYIV, UKRAINE',
   },
-  {
-    imgUrl: '/payments/monobank.svg',
-    name: 'Monobank',
-    cardNumber: '5375 4114 1591 9971',
-    recipient: 'Oleg K.',
-  },
 ]
 
 const SwiftAccounts: Swift[] = [
