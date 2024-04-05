@@ -1,7 +1,6 @@
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
@@ -9,6 +8,7 @@ const Footer = () => {
   const year = new Date().getFullYear()
   const { t } = useTranslation()
   const router = useRouter()
+  const phoneNumber = '+380 (93) 197 03 77'
 
   return (
     <footer>
@@ -35,10 +35,8 @@ const Footer = () => {
                 <p className="text-sm text-dbd-mid-grey">
                   {t('footer.phone')}:
                 </p>
-                <Link href="tel:+38 (063) 571 78 42">
-                  <a className="font-bold font-montserrat">
-                    +38 (063) 571 78 42
-                  </a>
+                <Link href={`tel:${phoneNumber}`}>
+                  <a className="font-bold font-montserrat">{phoneNumber}</a>
                 </Link>
               </div>
               <div className="space-y-1 text-center lg:text-left">
